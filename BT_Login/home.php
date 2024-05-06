@@ -10,6 +10,8 @@
     }
     if($username!="") $logined="Xin chào: ".$username;
     else $logined="Login";
+    if($password!="") $passworded="Mật khẩu: ".$password;
+    else $passworded="...";
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +27,7 @@
 
 <body>
     <p style="margin: 20px;"><?=$logined?></p>
+    <p style="margin: 20px;"><?=$passworded?></p>   
     <p style="margin: 20px;">
         <a href="logout.php" class="btn btn-info btn-lg">
           <span class="glyphicon glyphicon-log-out"></span> Thoát
