@@ -23,15 +23,20 @@
 
         // Kiểm tra kết quả trả về
         if(mysqli_num_rows($result) == 1) {
-            // $content="/BT_login/logout.php";
-            // echo ("<script>location.href='$content'</script>");
+            $row = mysqli_fetch_assoc($result); // Lấy dữ liệu từ kết quả truy vấn
             $_SESSION["IsLogin"] = true;
             $_SESSION['username'] = $username;
+            $_SESSION['role'] = $row['role'];
             $_SESSION['password'] = $password;
+            
 
-            // $update_query = "UPDATE tbllogin SET password='$hashed_password' WHERE username='$username'";
-            // mysqli_query($con, $update_query);
-            header("Location: home.php");
+            if($_SESSION['role'] == 'admin') {
+                header("Location: admin.php");
+            } elseif ($_SESSION['role'] == 'user') {
+                header("Location: home.php");
+            } else {
+                echo "<script>alert('Vai trò không hợp lệ!'); window.location.href = 'login.php';</script>";
+            }
         } else {
             echo "<script>alert('Tên đăng nhập hoặc mật khẩu không đúng!'); window.location.href = 'login.php';</script>";
         }
