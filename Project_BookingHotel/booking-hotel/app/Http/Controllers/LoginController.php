@@ -44,7 +44,7 @@ class LoginController extends Controller
     }
     public function postLogin(Request $req){
         
-        if(Auth::attempt(['email'=>$req->email,'password'=>$req->password]))
+        if(Auth::attempt(['email'=>$req->email,'password'=>$req->password,'role'=> 0]))
         {
             return redirect()->route('index');
         }else{

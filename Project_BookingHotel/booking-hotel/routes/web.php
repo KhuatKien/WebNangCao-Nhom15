@@ -16,9 +16,11 @@ Route::post('/register', [LoginController::class, 'postRegister']);
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
-//SSO
+//SSO Google
 Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('auth.google.callback');
 
 //Admin
 Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
+Route::get('/loginadmin', [AdminController::class, 'loginadmin'])->name('loginadmin');
+Route::post('/loginadmin', [AdminController::class, 'postLoginAdmin']);
