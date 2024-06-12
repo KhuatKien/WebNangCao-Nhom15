@@ -42,7 +42,11 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <p class="nav-link">ADMIN</p>
+        <!-- <p class="nav-link">ADMIN</p> -->
+        @if(Auth::check())
+                    <li><a class="nav-link" href="#">Hello, {{ Auth::user()->name }}</a></li>
+                    <li><a class="nav-link" href="{{ route('loginadmin') }}">LOGOUT</a></li>
+                @endif
       </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
@@ -65,7 +69,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img  src="{{asset('assets/image/avatar5.png')}}" class="img-circle elevation-2" alt="User Image">
+          <!-- <img  src="{{asset('assets/image/avatar5.png')}}" class="img-circle elevation-2" alt="User Image"> -->
         </div>
         <div class="info">
           <a href="#" class="d-block">ADMIN</a>
@@ -84,7 +88,7 @@
             </a>
           </li>
           <li class="nav-item menu-open">
-            <a href="nguoidung.php" class="nav-link ">
+            <a href="#" class="nav-link ">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Users

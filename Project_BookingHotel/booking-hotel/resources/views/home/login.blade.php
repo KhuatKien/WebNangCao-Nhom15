@@ -55,6 +55,9 @@
                 <p class="container-right-p3">
                     Already have a account?<a href="{{route('register')}}"> Register</a>
                 </p>
+                <!-- <p class="container-right-p3" style="margin-top: 10px; ">
+                    Login<a href="{{route('loginadmin')}}"> Admin Hotel</a>
+                </p> -->
             </form>
             </div>
         </div>
