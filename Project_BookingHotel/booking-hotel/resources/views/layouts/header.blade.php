@@ -1,4 +1,4 @@
-<div id="header">
+<header id="header">
     <div class="logo">
         <a href="{{route('index')}}"><img src="{{ asset('assets/image/logo.png') }}" alt="logo"></a>
     </div>
@@ -24,4 +24,4 @@
             @endif
         </ul>
     </div>
-</div>
+</header>

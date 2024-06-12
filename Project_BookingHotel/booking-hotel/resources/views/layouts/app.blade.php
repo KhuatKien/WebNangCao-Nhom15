@@ -8,9 +8,13 @@
     <script src="https://kit.fontawesome.com/7b9d8c4ddc.js" crossorigin="anonymous"></script>
     <title>Home</title>
 </head>
+    <body>
+        @include('layouts.header')
 
-@extends('layouts.header')
+        <div class="content">
+            @yield('content')
+        </div>
 
-@yield('content')
-
-@extends('layouts.footer')
+        @include('layouts.footer')
+    </body>
+</html>

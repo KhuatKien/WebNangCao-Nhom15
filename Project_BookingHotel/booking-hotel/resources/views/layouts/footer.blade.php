@@ -1,4 +1,4 @@
-<div class="footer">
+<footer class="footer">
     <div class="footer-top">
             <div class="footer-top-1">
                 <h4>About Hotel</h4>
@@ -59,4 +59,4 @@
             <p>© Copyright 2022 by DuruThemes.com</p>
         </div>
     </div>
-</div>
+</footer>
