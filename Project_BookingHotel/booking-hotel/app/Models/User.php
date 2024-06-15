@@ -11,16 +11,18 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+
+    protected $table = 'users';
+    protected $primaryKey = 'id';
+    public $timestamps = true;
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'google_id',
+        'name', 'email', 'email_verified_at', 'password', 'remember_token', 
+        'created_at', 'updated_at', 'google_id', 'role'
     ];
 
     /**
@@ -44,5 +46,11 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function guests()
+    {
+        // return $this->hasMany(TblGuest::class, 'GuestID', 'id');
+        return $this->hasOne(TblGuest::class, 'GuestID', 'id');
     }
 }

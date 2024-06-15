@@ -8,6 +8,10 @@ a{
     text-decoration: none;
 }
 
+html {
+    font-family: 'Barlow Condensed', sans-serif;
+}
+
 body{
     background-image: url("./assets/image/background-image.jpg");
     background-size: cover;
@@ -55,6 +59,15 @@ body{
     width: 100%;
     height: 51px;
     color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+.menu .list-menu>ul>li>a:hover{
+    color: #AB844F;
+}
+
+.list-menu ul li.active a {
+    color: #AB844F; 
 }
 
 .login ul{
@@ -69,6 +82,11 @@ body{
 
 .login ul li a{
     color: white;
+    transition: all 0.3s ease-in-out;
+}
+
+.login ul li a:hover{
+    color: #AB844F;
 }
 
 /* Content */
@@ -81,6 +99,7 @@ body{
 .footer {
     background-color: #1D1D1F;
     color: white;
+    margin-top: 1200px;
 }
 
 .footer-top {
@@ -230,3 +249,239 @@ body{
     color: #adadad;
 }
 
+
+/* Restaurant */
+
+.res-wrapper {
+    margin-top: 700px;
+    font-size: 30px;
+    width: 100%;
+    height: 884px;
+    background-color: #fff;
+}
+
+.res-content-top{
+    width: 1140px;
+    height: 138px;
+    margin: 0 auto;
+    padding-top: 100px;
+}
+
+.res-content-top i {
+    font-size: 16px;
+    color: #E4A853;
+}
+
+.res-content-top-p1 {
+    color: #666;
+    font-size: 16px;
+    margin: 16px 0;
+    letter-spacing: 6px;
+}
+
+.res-content-top-p2{
+    font-size: 50px;
+    color: #222;
+}
+
+.res-content-bottom{
+    width: 1140px;
+    margin: 0 auto;
+    margin-top: 140px;
+}
+
+.res-content-bottom p{
+    font-size: 16px;
+    color: #666;
+    letter-spacing: 1.6px;
+    line-height: 26.25px;
+}
+
+.res-content-bottom h6 {
+    color: #222;
+    font-size: 24px;
+    margin: 20px 0;
+    font-weight: 400;
+}
+
+.clock {
+    display: flex;
+}
+
+.clock i {
+    font-size: 16px;
+    color: #E4A853;
+    padding-top: 6px;
+    padding-right: 10px;
+}
+
+.restaurant-menu {
+    width: 100%;
+    height: 787px;
+    background-color: #222;
+    margin-top: 160px;
+    text-align: center;
+}
+
+.menu-title {
+    width: 1140px;
+    height: 109px;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 40px;
+}
+
+.menu-title-p1{
+    color: #aa8453;
+    font-size: 16px;
+    letter-spacing: 6px;
+}
+
+.menu-title-p2 {
+    font-size: 50px;
+    color: #fff;
+}
+
+.menu-type {
+    width: 1140px;
+    margin: 0 auto;
+}
+
+.menu-type-item {
+    width: 926px;
+    height: 137px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 60px;
+}
+
+.menu-type-item ul li {
+    display: inline;
+    color: #fff;
+    font-size: 24px;
+    margin: 0 40px;
+    font-weight: 300;
+    /* border: 1px solid #aa8453 ; */
+    padding: 10px 30px;
+}
+
+.menu-list {
+    width: 1140px;
+    display: flex;
+    margin: 0 auto;
+    padding-left: 80px;
+    justify-content: space-around;
+}
+
+.menu-list-left {
+    margin-left: -80px;
+}
+
+.menu-list-left h5 {
+    color: #aa8453;
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: 1.6px;
+    border-bottom: 1px dashed #AA8453;
+    padding-bottom: 8px;
+}
+
+.menu-list-left p {
+    color: #adadad;
+    font-size: 18px;
+    margin: 10px 0;
+    letter-spacing: 1.6px;
+}
+
+.menu-list-right h5 {
+    color: #aa8453;
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: 1.6px;
+    border-bottom: 1px dashed #AA8453;
+    padding-bottom: 8px;
+}
+
+.menu-list-right p {
+    color: #adadad;
+    font-size: 18px;
+    margin: 10px 0;
+    letter-spacing: 1.6px;
+}
+
+.restaurant-menu button {
+    width: 122px;
+    height: 44px;
+    margin-top: 50px;
+    background-color: #AA8453;
+    color: #fff;
+    border: none;
+    font-size: 12px;
+    letter-spacing: 1.2px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.restaurant-menu button a {
+    color: #fff;
+}
+
+.restaurant-menu button:hover {
+    background-color: #1D1D1F;
+}
+
+.restaurant-message-container{
+    width: 736px;
+    height: 375px;
+    margin: 0 auto;
+    margin-top: 90px;
+}
+
+.restaurant-message-container h6 {
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 6px;
+    font-weight: 400;
+}
+
+.restaurant-message-container h4 {
+    margin: 16px 0;
+    font-size: 32px;
+    color: #fff;
+    font-weight: 400;
+}
+
+.restaurant-message-container p {
+    color: #fff;
+    font-size: 16px;
+    letter-spacing: 1.6px;
+    line-height: 26.25px;
+}
+
+.restaurant-message-info {
+    display: flex;
+}
+
+.restaurant-message-info img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+.restaurant-message-info-content i {
+    font-size: 8px;
+    color: #AB844F;
+}
+
+.restaurant-message-info-content h6 {
+    color: #fff;
+    font-size: 16px;
+    margin: 4px 0;
+}
+
+.restaurant-message-info-content p {
+    font-size: 12px;
+    color: #fff;
+}
