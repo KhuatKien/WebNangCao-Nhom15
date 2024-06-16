@@ -56,7 +56,7 @@
     </div>
     <div class="footer-bottom">
         <div class="footer-bottom-content">
-            <p>© Copyright 2022 by DuruThemes.com</p>
+            <p>© TheCappaHotel.com</p>
         </div>
     </div>
 </footer>

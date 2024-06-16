@@ -9,7 +9,7 @@
                 <li><a href="#">ABOUT</a></li>
                 <li><a href="#">ROOM</a></li>
                 <li class="{{ Route::currentRouteName() == 'restaurant' ? 'active' : '' }}"><a href="{{ route('restaurant') }}">RESTAURANT</a></li>
-                <li><a href="#">CONTACT</a></li>
+                <li class="{{ Route::currentRouteName() == 'contact' ? 'active' : '' }}"><a href="{{ route('contact') }}">CONTACT</a></li>
             </ul>
         </div>
     </div>

@@ -119,14 +119,17 @@ body{
     font-size: 24px;
     color: #eaeaf3;
     padding-bottom: 25px;
+    font-family: 'Gilda Display', serif;
+    font-weight: 200;
 }
 
 .footer-top-1 p {
     width: 356px;
     height: 79px;
     line-height: 1.65;
-    font-size: 16px;
+    font-size: 18px;
     color: #adadad;
+    margin-bottom: 10px;
 }
 
 .custom-select {
@@ -176,6 +179,8 @@ body{
     font-size: 24px;
     color: #eaeaf3;
     padding-bottom: 25px;
+    font-family: 'Gilda Display', serif;
+    font-weight: 200;
 }
 
 
@@ -185,7 +190,7 @@ body{
 }
 
 .footer-top-2 li a {
-    font-size: 16px;
+    font-size: 18px;
     color: #86868b;
 }
 
@@ -202,11 +207,13 @@ body{
     font-size: 24px;
     color: #eaeaf3;
     padding-bottom: 25px;
+    font-family: 'Gilda Display', serif;
+    font-weight: 200;
 }
 
 .footer-top-3-p1{
     color: #adadad;
-    font-size: 16px;
+    font-size: 18px;
     width: 250px;
     line-height: 1.65;
 }
@@ -214,12 +221,14 @@ body{
 .footer-top-3-p2{
     font-size: 24px;
     margin: 20px 0;
+    font-family: 'Gilda Display', serif;
 }
 
 .footer-top-3-p3{
     border-bottom: 1px solid #AA8453;
     width: 148px;
     margin-bottom: 10px;
+    font-size: 18px;
 }
 
 .footer-icon{
@@ -230,6 +239,12 @@ body{
     font-size: 15px;
     margin: 10px;
     margin-top: 20px;
+    transition: all 0.2s ease-in-out;
+}
+
+.footer-icon i:hover {
+    color: #AA8453;
+    cursor: pointer;
 }
 
 .footer-icon-1 {
@@ -245,7 +260,7 @@ body{
 }
 
 .footer-bottom-content p {
-    font-size: 12px;
+    font-size: 16px;
     color: #adadad;
 }
 
@@ -282,6 +297,7 @@ body{
 .res-content-top-p2{
     font-size: 50px;
     color: #222;
+    font-family: 'Gilda Display', serif;
 }
 
 .res-content-bottom{
@@ -291,9 +307,9 @@ body{
 }
 
 .res-content-bottom p{
-    font-size: 16px;
+    font-size: 18px;
     color: #666;
-    letter-spacing: 1.6px;
+    letter-spacing: 1.2 px;
     line-height: 26.25px;
 }
 
@@ -302,10 +318,16 @@ body{
     font-size: 24px;
     margin: 20px 0;
     font-weight: 400;
+    font-family: 'Gilda Display', serif;
 }
 
 .clock {
     display: flex;
+    margin: 8px 0;
+}
+
+.clock p{
+    font-size: 18px;
 }
 
 .clock i {
@@ -319,7 +341,7 @@ body{
     width: 100%;
     height: 787px;
     background-color: #222;
-    margin-top: 160px;
+    margin-top: 140px;
     text-align: center;
 }
 
@@ -340,11 +362,14 @@ body{
 .menu-title-p2 {
     font-size: 50px;
     color: #fff;
+    font-family: 'Gilda Display', serif;
+    margin-top: 10px;
 }
 
 .menu-type {
     width: 1140px;
     margin: 0 auto;
+    font-family: 'Gilda Display', serif;
 }
 
 .menu-type-item {
@@ -384,6 +409,7 @@ body{
     letter-spacing: 1.6px;
     border-bottom: 1px dashed #AA8453;
     padding-bottom: 8px;
+    font-family: 'Gilda Display', serif;
 }
 
 .menu-list-left p {
@@ -400,6 +426,7 @@ body{
     letter-spacing: 1.6px;
     border-bottom: 1px dashed #AA8453;
     padding-bottom: 8px;
+    font-family: 'Gilda Display', serif;    
 }
 
 .menu-list-right p {
@@ -412,14 +439,13 @@ body{
 .restaurant-menu button {
     width: 122px;
     height: 44px;
-    margin-top: 50px;
+    margin-top: 80px;
     background-color: #AA8453;
     color: #fff;
     border: none;
     font-size: 12px;
-    letter-spacing: 1.2px;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.1s ease-in-out;
 }
 
 .restaurant-menu button a {
@@ -449,6 +475,7 @@ body{
     font-size: 32px;
     color: #fff;
     font-weight: 400;
+    font-family: 'Gilda Display', serif;
 }
 
 .restaurant-message-container p {

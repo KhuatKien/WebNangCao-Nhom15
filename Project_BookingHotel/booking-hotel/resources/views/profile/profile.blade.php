@@ -2,14 +2,17 @@
 
 @section('content')
 <style>
+
     .form-container {
         background: #fff;
         padding: 20px 30px;
         border-radius: 10px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        max-width: 600px;
-        width: 100%;
+        width: 1200px;
+        height: 600px;
         margin: 0 auto;
+        overflow-y: auto;
+        margin-top: 30px;
     }
     .form-container h2 {
         margin-bottom: 15px;
@@ -71,54 +74,56 @@
     }
 </style>
 
-<div class="form-container">
-    <h2>Update Profile</h2>
-    <form action="{{ route('profile.update') }}" method="POST">
-        @csrf
-        <div class="form-grid">
-            <div class="full-width">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" value="{{ $user->name }}" readonly>
+<div class="form-wrapper">
+    <div class="form-container">
+        <h2>Update Profile</h2>
+        <form action="{{ route('profile.update') }}" method="POST">
+            @csrf
+            <div class="form-grid">
+                <div class="full-width">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" value="{{ $user->name }}" readonly>
+                </div>
+                <div class="full-width">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" value="{{ $user->email }}" readonly>
+                </div>
+                <div>
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" name="dob" value="{{ old('dob', $guest->DOB ?? '') }}" required>
+                </div>
+                <div>
+                    <label for="gender">Gender:</label>
+                    <input type="text" id="gender" name="gender" value="{{ old('gender', $guest->Gender ?? '') }}" required>
+                </div>
+                <div>
+                    <label for="phone">Phone Number:</label>
+                    <input type="text" id="phone" name="phone" value="{{ old('phone', $guest->PhoneNo ?? '') }}" required>
+                </div>
+                <div>
+                    <label for="passport">Passport Number:</label>
+                    <input type="text" id="passport" name="passport" value="{{ old('passport', $guest->PassportNo ?? '') }}" required>
+                </div>
+                <div class="full-width">
+                    <label for="address">Address:</label>
+                    <input type="text" id="address" name="address" value="{{ old('address', $guest->Address ?? '') }}" required>
+                </div>
+                <div>
+                    <label for="postcode">Postcode:</label>
+                    <input type="text" id="postcode" name="postcode" value="{{ old('postcode', $guest->Postcode ?? '') }}" required>
+                </div>
+                <div>
+                    <label for="city">City:</label>
+                    <input type="text" id="city" name="city" value="{{ old('city', $guest->City ?? '') }}" required>
+                </div>
+                <div class="full-width">
+                    <label for="country">Country:</label>
+                    <input type="text" id="country" name="country" value="{{ old('country', $guest->Country ?? '') }}" required>
+                </div>
             </div>
-            <div class="full-width">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" value="{{ $user->email }}" readonly>
-            </div>
-            <div>
-                <label for="dob">Date of Birth:</label>
-                <input type="date" id="dob" name="dob" value="{{ old('dob', $guest->DOB ?? '') }}" required>
-            </div>
-            <div>
-                <label for="gender">Gender:</label>
-                <input type="text" id="gender" name="gender" value="{{ old('gender', $guest->Gender ?? '') }}" required>
-            </div>
-            <div>
-                <label for="phone">Phone Number:</label>
-                <input type="text" id="phone" name="phone" value="{{ old('phone', $guest->PhoneNo ?? '') }}" required>
-            </div>
-            <div>
-                <label for="passport">Passport Number:</label>
-                <input type="text" id="passport" name="passport" value="{{ old('passport', $guest->PassportNo ?? '') }}" required>
-            </div>
-            <div class="full-width">
-                <label for="address">Address:</label>
-                <input type="text" id="address" name="address" value="{{ old('address', $guest->Address ?? '') }}" required>
-            </div>
-            <div>
-                <label for="postcode">Postcode:</label>
-                <input type="text" id="postcode" name="postcode" value="{{ old('postcode', $guest->Postcode ?? '') }}" required>
-            </div>
-            <div>
-                <label for="city">City:</label>
-                <input type="text" id="city" name="city" value="{{ old('city', $guest->City ?? '') }}" required>
-            </div>
-            <div class="full-width">
-                <label for="country">Country:</label>
-                <input type="text" id="country" name="country" value="{{ old('country', $guest->Country ?? '') }}" required>
-            </div>
-        </div>
-        <button type="submit">Update Profile</button>
-    </form>
-    <a href="{{ route('profile') }}" class="back-to-profile"><i class="fas fa-arrow-left"></i> Back to Profile</a>
+            <button type="submit">Update Profile</button>
+        </form>
+        <a href="{{ route('profile') }}" class="back-to-profile"><i class="fas fa-arrow-left"></i> Back to Profile</a>
+    </div>
 </div>
 @endsection

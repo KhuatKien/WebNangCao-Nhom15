@@ -41,6 +41,6 @@ class RestaurantController extends Controller
         $table->TableStatus = '1'; // Mark the table as pending
         $table->save();
 
-        return redirect()->back()->with('success', 'Đang chờ khách sạn xác nhận');
+        return redirect()->back()->with('success', 'Waiting for hotel confirmation');
     }
 }

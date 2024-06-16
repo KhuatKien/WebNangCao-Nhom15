@@ -2,7 +2,7 @@
 
     @section('content')
         <div class="tablelist-wrapper">
-            <h2>Danh Sách Bàn Có Sẵn</h2>
+            <h2>List of available tables</h2>
 
             @if(session('success'))
                 <div class="alert alert-success table-message" >
@@ -13,17 +13,17 @@
             <div class="tables-container">
                 @foreach($tables as $table)
                     <div class="table-item">
-                        <h3>Mã Bàn: {{ $table->TableID }}</h3>
-                        <p>Sức Chứa: {{ $table->Occupancy }}</p>
-                        <p>Trạng Thái: {{ $table->TableStatus == '0' ? 'Còn trống' : 'Đã đặt' }}</p>
+                        <h3>Table ID: {{ $table->TableID }}</h3>
+                        <p>Occupancy: {{ $table->Occupancy }}</p>
+                        <p>Status Table: {{ $table->TableStatus == '0' ? 'Still Empty' : 'Reserved a table' }}</p>
                         @if($table->TableStatus == '0')
                             @auth
-                                <button class="btn btn-primary" onclick="openBookingForm('{{ $table->TableID }}', '{{ auth()->user()->id }}', '{{ auth()->user()->name }}')">Đặt bàn</button>
+                                <button class="btn btn-primary" onclick="openBookingForm('{{ $table->TableID }}', '{{ auth()->user()->id }}', '{{ auth()->user()->name }}')">Book Table</button>
                             @else
-                                <a href="{{ route('login') }}" class="btn btn-secondary">Đăng nhập để đặt bàn</a>
+                                <a href="{{ route('login') }}" class="btn btn-secondary">Login to book a table</a>
                             @endauth
                         @else
-                            <span class="status-text">Đã có người đặt bàn</span>
+                            <span class="status-text">Someone has reserved the table</span>
                         @endif
                     </div>
                 @endforeach
@@ -77,7 +77,9 @@
         .tablelist-wrapper h2 {
             color: #fff;
             font-weight: 500;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 30px;
         }
 
         .tables-container {
