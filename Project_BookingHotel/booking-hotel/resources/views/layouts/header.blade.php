@@ -5,9 +5,9 @@
     <div class="menu">
         <div class="list-menu">
             <ul>
-                <li><a href="#">HOME</a></li>
+                <li class="{{ Route::currentRouteName() == 'index' ? 'active' : '' }}"><a href="{{route('index')}}">HOME</a></li>
                 <li><a href="#">ABOUT</a></li>
-                <li><a href="#">ROOM</a></li>
+                <li class="{{ Route::currentRouteName() == 'roomlist' ? 'active' : '' }}"><a href="{{ route('roomlist')}}">ROOM</a></li>
                 <li><a href="#">RESTAURANT</a></li>
                 <li><a href="#">CONTACT</a></li>
             </ul>
