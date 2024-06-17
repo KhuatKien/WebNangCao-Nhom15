@@ -96,7 +96,7 @@
             </a>
           </li>
           <li class="nav-item menu-open">
-            <a href="{{route('admin.users.index')}}" class="nav-link active">
+            <a href="{{route('admin.users.index')}}" class="nav-link ">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Users
@@ -104,7 +104,7 @@
             </a>
           </li>
           <li class="nav-item menu-open">
-            <a href="{{route('admin.tables.index')}}" class="nav-link ">
+            <a href="{{route('admin.tables.index')}}" class="nav-link active ">
                 <i class="nav-icon fas fa-table"></i>
               <p>
                 Tables
@@ -113,7 +113,7 @@
           </li>
           <li class="nav-item menu-open">
             <a href="#" class="nav-link ">
-            <i class="nav-icon fas fa-book"></i>
+                <i class="nav-icon fas fa-book"></i>
               <p>
                 Room list
               </p>
@@ -148,114 +148,115 @@
     <section class="content">
       <div class="container-fluid">
       <div class="container">
-        <h1 class="mt-5">Users</h1>
-        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#addUserModal">Add User</button>
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-        <table class="table table-bordered mt-3">
-            <thead>
+    <h1 class="mt-5">Tables</h1>
+    <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#addTableModal">Add Table</button>
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+    <table class="table table-bordered mt-3">
+        <thead>
+            <tr>
+                <th>Table ID</th>
+                <th>Occupancy</th>
+                <th>Table Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+                @foreach ($tables as $table)
                 <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Created At</th>
-                    <th>Updated At</th>
-                    <th>Actions</th>
+                <td>{{ $table->TableID }}</td>
+                <td>{{ $table->Occupancy }}</td>
+                <td>
+                    @if ($table->TableStatus == 1)
+                    Someone booked a table
+                    @else
+                    Table is empty
+                    @endif
+                </td>
+                <td>
+                    <button class="btn btn-warning action-btn" onclick="editTable('{{ $table->TableID }}', '{{ $table->Occupancy }}', '{{ $table->TableStatus }}')">Edit</button>
+                    <button class="btn btn-danger action-btn" onclick="deleteTable('{{ $table->TableID }}')">Delete</button>
+                    <form id="delete-form-{{ $table->TableID }}" action="{{ route('admin.tables.destroy', $table->TableID) }}" method="POST" style="display: none;">
+                    @csrf
+                    @method('DELETE')
+                    </form>
+                </td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach ($users as $user)
-                    <tr>
-                        <td>{{ $user->id }}</td>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>{{ $user->created_at }}</td>
-                        <td>{{ $user->updated_at }}</td>
-                        <td>
-                            <button class="btn btn-warning action-btn" onclick="editUser('{{ $user->id }}', '{{ $user->name }}', '{{ $user->email }}')">Edit</button>
-                            <button class="btn btn-danger action-btn" onclick="deleteUser('{{ $user->id }}')">Delete</button>
-                            <form id="delete-form-{{ $user->id }}" action="{{ route('admin.users.destroy', $user->id) }}" method="POST" style="display: none;">
-                                @csrf
-                                @method('DELETE')
-                            </form>
-                        </td>
-                    </tr>
                 @endforeach
-            </tbody>
-        </table>
-    </div>
+        </tbody>
+    </table>
+</div>
 
-    <!-- Add User Modal -->
-    <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addUserModalLabel">Add New User</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form id="addUserForm" action="{{ route('admin.users.store') }}" method="POST">
-                    @csrf
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="name">Name:</label>
-                            <input type="text" name="name" id="add_name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email:</label>
-                            <input type="email" name="email" id="add_email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password:</label>
-                            <input type="password" name="password" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Add User</button>
-                    </div>
-                </form>
+<!-- Add Table Modal -->
+<div class="modal fade" id="addTableModal" tabindex="-1" role="dialog" aria-labelledby="addTableModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addTableModalLabel">Add New Table</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+            <form id="addTableForm" action="{{ route('admin.tables.store') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="TableID">Table ID:</label>
+                        <input type="text" name="TableID" id="add_TableID" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Occupancy">Occupancy:</label>
+                        <input type="number" name="Occupancy" id="add_Occupancy" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="TableStatus">Table Status:</label>
+                        <input type="text" name="TableStatus" id="add_TableStatus" class="form-control" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add Table</button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 
-    <!-- Edit User Modal -->
-    <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editUserModalLabel">Edit User</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form id="editUserForm" action="" method="POST">
-                    @csrf
-                    <!-- Laravel method spoofing for PUT request -->
-                    @method('PUT')
-                    <div class="modal-body">
-                        <input type="hidden" name="edit_id" id="edit_id">
-                        <div class="form-group">
-                            <label for="edit_name">Name:</label>
-                            <input type="text" name="edit_name" id="edit_name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="edit_email">Email:</label>
-                            <input type="email" name="edit_email" id="edit_email" class="form-control" required>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
-                    </div>
-                </form>
+<!-- Edit Table Modal -->
+<div class="modal fade" id="editTableModal" tabindex="-1" role="dialog" aria-labelledby="editTableModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editTableModalLabel">Edit Table</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+            <form id="editTableForm" action="" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+                    <input type="hidden" name="edit_id" id="edit_id">
+                    <div class="form-group">
+                        <label for="edit_Occupancy">Occupancy:</label>
+                        <input type="number" name="edit_Occupancy" id="edit_Occupancy" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_TableStatus">Table Status:</label>
+                        <input type="text" name="edit_TableStatus" id="edit_TableStatus" class="form-control" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 
       </div><!-- /.container-fluid -->
     </section>
@@ -312,27 +313,22 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <script>
-        function editUser(userId, name, email) {
-                document.getElementById('edit_id').value = userId;
-                document.getElementById('edit_name').value = name;
-                document.getElementById('edit_email').value = email;
+    function editTable(tableID, occupancy, tableStatus) {
+        document.getElementById('edit_id').value = tableID;
+        document.getElementById('edit_Occupancy').value = occupancy;
+        document.getElementById('edit_TableStatus').value = tableStatus;
 
-                // Set the action attribute of the form dynamically
-                document.getElementById('editUserForm').action = '/admin/users/' + userId;
-                // Ensure method is set to PUT
-                document.getElementById('editUserForm').method = 'POST';
+        document.getElementById('editTableForm').action = '/admin/tables/' + tableID;
+        document.getElementById('editTableForm').method = 'POST';
 
-                // Show the modal
-                $('#editUserModal').modal('show');
-            }
-    </script>
-    <script>
-        function deleteUser(userId) {
-            if (confirm('Are you sure you want to delete this user?')) {
-                // Use jQuery to submit the form
-                $('#delete-form-' + userId).submit();
-            }
-            }
+        $('#editTableModal').modal('show');
+    }
+
+    function deleteTable(tableID) {
+        if (confirm('Are you sure you want to delete this table?')) {
+            $('#delete-form-' + tableID).submit();
+        }
+    }
     </script>
 </body>
 </html>

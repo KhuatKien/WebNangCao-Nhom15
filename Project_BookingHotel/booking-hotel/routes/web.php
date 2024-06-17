@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\TableAdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckAdmin;
 use Illuminate\Support\Facades\Route;
@@ -37,10 +38,18 @@ Route::post('/loginadmin', [AdminController::class, 'postLoginAdmin']);
 
 Route::middleware(['auth', CheckAdmin::class])->group(function () {
     Route::get('/admin', [AdminController::class, 'admin'])->name('admin.dashboard');
+
+    //User Admin
     Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
     Route::post('/admin/users', [UserController::class, 'store'])->name('admin.users.store');
     Route::put('/admin/users/{id}', [UserController::class, 'update'])->name('admin.users.update');
     Route::delete('/admin/users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+
+    //Table Admin
+    Route::get('/admin/tables', [TableAdminController::class, 'index'])->name('admin.tables.index');
+    Route::post('/admin/tables', [TableAdminController::class, 'store'])->name('admin.tables.store');
+    Route::put('/admin/tables/{id}', [TableAdminController::class, 'update'])->name('admin.tables.update');
+    Route::delete('/admin/tables/{id}', [TableAdminController::class, 'destroy'])->name('admin.tables.destroy');
 });
 
 //Restaurant

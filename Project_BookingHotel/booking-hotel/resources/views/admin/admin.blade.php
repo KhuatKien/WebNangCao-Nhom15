@@ -96,16 +96,16 @@
             </a>
           </li>
           <li class="nav-item menu-open">
-            <a href="#" class="nav-link ">
-              <i class="nav-icon fas fa-book"></i>
+            <a href="{{route('admin.tables.index')}}" class="nav-link  ">
+                <i class="nav-icon fas fa-table"></i>
               <p>
-                Posts
+                Tables
               </p>
             </a>
           </li>
           <li class="nav-item menu-open">
             <a href="#" class="nav-link ">
-              <i class="nav-icon fas fa-table"></i>
+            <i class="nav-icon fas fa-book"></i>
               <p>
                 Room list
               </p>
