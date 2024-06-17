@@ -6,7 +6,7 @@
         <div class="list-menu">
             <ul>
                 <li class="{{ Route::currentRouteName() == 'index' ? 'active' : '' }}"><a href="{{route('index')}}">HOME</a></li>
-                <li><a href="#">ABOUT</a></li>
+                <li class="{{ Route::currentRouteName() == 'about' ? 'active' : '' }}"><a href="{{route('about')}}">ABOUT</a></li>
                 <li class="{{ Route::currentRouteName() == 'roomlist' ? 'active' : '' }}"><a href="{{ route('roomlist')}}">ROOM</a></li>
                 <li><a href="#">RESTAURANT</a></li>
                 <li><a href="#">CONTACT</a></li>

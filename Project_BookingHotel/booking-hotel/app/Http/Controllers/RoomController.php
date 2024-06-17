@@ -8,10 +8,6 @@ use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {
-    // public function roomlist(){
-    //     return view('room.room');
-    // }
-
     public function roomlist()
     {
         // Lấy tất cả các loại phòng có status bằng 1 từ bảng `tblroomtype`
