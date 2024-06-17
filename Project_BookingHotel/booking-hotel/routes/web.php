@@ -7,8 +7,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\UserController;
+use App\Http\Middleware\CheckAdmin;
 use Illuminate\Support\Facades\Route;
-
 
 //User
 Route::get('/', [HomeController::class, 'index'])->name('index');
@@ -24,10 +25,23 @@ Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle'])->name(
 Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('auth.google.callback');
 
 //Admin
-Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
+// Route::get('/admin', [AdminController::class, 'admin'])->name('admin');
 Route::get('/loginadmin', [AdminController::class, 'loginadmin'])->name('loginadmin');
 Route::post('/loginadmin', [AdminController::class, 'postLoginAdmin']);
 
+//User
+// Route::get('/admin/users', [UserController::class, 'users'])->name('users.index');
+// Route::post('/admin/users', [UserController::class, 'store'])->name('users.store');
+// Route::put('/admin/users/{id}', [UserController::class, 'update'])->name('users.update');
+// Route::delete('/admin/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+
+Route::middleware(['auth', CheckAdmin::class])->group(function () {
+    Route::get('/admin', [AdminController::class, 'admin'])->name('admin.dashboard');
+    Route::get('/admin/users', [UserController::class, 'index'])->name('admin.users.index');
+    Route::post('/admin/users', [UserController::class, 'store'])->name('admin.users.store');
+    Route::put('/admin/users/{id}', [UserController::class, 'update'])->name('admin.users.update');
+    Route::delete('/admin/users/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+});
 
 //Restaurant
 Route::get('/restaurant', [RestaurantController::class, 'restaurant'])->name('restaurant');
