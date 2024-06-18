@@ -29,7 +29,6 @@ Route::post('/book-room', [BookingController::class, 'store'])->name('book.room'
 Route::get('/about', [AboutController::class, 'about'])->name('about');
 
 
-
 //SSO Google
 Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('auth.google.callback');

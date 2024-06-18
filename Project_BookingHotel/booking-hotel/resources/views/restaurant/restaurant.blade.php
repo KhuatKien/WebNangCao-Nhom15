@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    <div class="res-wrapper">
         <div class="restaurant-about">
             <div class="res-content-top">
                 <span>
@@ -91,5 +90,4 @@
                 </div>
             </div>
         </div>
-    </div>
 @endsection

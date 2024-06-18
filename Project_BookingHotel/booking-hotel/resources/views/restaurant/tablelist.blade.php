@@ -18,7 +18,7 @@
                         <p>Status Table: {{ $table->TableStatus == '0' ? 'Still Empty' : 'Reserved a table' }}</p>
                         @if($table->TableStatus == '0')
                             @auth
-                                <button class="btn btn-primary" onclick="openBookingForm('{{ $table->TableID }}', '{{ auth()->user()->id }}', '{{ auth()->user()->name }}')">Book Table</button>
+                                <button style="margin-top: 30px;" class="btn btn-primary" onclick="openBookingForm('{{ $table->TableID }}', '{{ auth()->user()->id }}', '{{ auth()->user()->name }}')">Book Table</button>
                             @else
                                 <a href="{{ route('login') }}" class="btn btn-secondary">Login to book a table</a>
                             @endauth
@@ -72,6 +72,7 @@
         .tablelist-wrapper {
             margin-top: 100px;
             margin-left: 50px;
+            margin-bottom: 1000px;
         }
 
         .tablelist-wrapper h2 {
@@ -116,8 +117,12 @@
         }
 
         .btn-primary {
-            background-color: #007bff;
+            background-color: #604631;
             cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #AB844F;
         }
 
         .btn-secondary {
