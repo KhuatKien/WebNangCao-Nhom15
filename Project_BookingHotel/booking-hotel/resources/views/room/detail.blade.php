@@ -95,7 +95,8 @@
             <div class="form">
                 <h6>ROOMS & SUITES</h6>
                 <h4>Hotel Booking Form</h4>
-                <form>
+                <form id="bookingForm" action="{{ route('book.room') }}" method="POST">
+                    @csrf
                     <div class="form-group">
                         <label for="roomNo">Room No</label>
                         <select id="roomNo" name="roomNo">
@@ -130,28 +131,99 @@
                     </div>
                     <button type="submit">Book now</button>
                 </form>
+                
+                <div id="errorMessage" style="display: none; color: red;"></div>
             </div>
-
-
-            {{-- <div class="form-2">
-                <h6>ROOMS & SUITES</h6>
-                <h4>Hotel Booking Form</h4>
-                <input type="submit" value="">
-                <input type="date" name="Check in" id="">
-                <input type="date" name="Check out" id="">
-                <div>
-                    <input type="submit" value="">
-                    <input type="submit" value="">
-                </div>
-                <button type="submit">
-                    BOOK NOW
-                </button>
-            </div> --}}
         </div>
     </div>
 @endsection
 
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const roomNoSelect = document.getElementById('roomNo');
+    const roomOccupancy = {{ $roomType->Occupancy }};
+    const roomType = "{{ $roomType->RoomType }}";
+
+    fetch(`/get-rooms/${roomType}`)
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(room => {
+                const option = document.createElement('option');
+                option.value = room.RoomNo;
+                option.textContent = `Room ${room.RoomNo}`;
+                roomNoSelect.appendChild(option);
+            });
+        });
+
+    const dateInputs = document.querySelectorAll('input[type="text"]');
+    dateInputs.forEach(input => {
+        input.addEventListener('focus', (e) => {
+            e.target.type = 'date';
+        });
+
+        input.addEventListener('blur', (e) => {
+            if (!e.target.value) {
+                e.target.type = 'text';
+                e.target.placeholder = 'dd/mm/yyyy';
+            } else {
+                const date = new Date(e.target.value);
+                const day = String(date.getDate()).padStart(2, '0');
+                const month = String(date.getMonth() + 1).padStart(2, '0'); 
+                const year = date.getFullYear();
+                const formattedDate = `${day}/${month}/${year}`;
+                e.target.type = 'text';
+                e.target.value = formattedDate;
+            }
+        });
+
+        input.placeholder = 'dd/mm/yyyy';
+    });
+
+    const form = document.getElementById('bookingForm');
+    const errorMessage = document.getElementById('errorMessage');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const checkin = document.getElementById('checkin').value;
+        const checkout = document.getElementById('checkout').value;
+        const adults = parseInt(document.getElementById('adults').value);
+        const children = parseInt(document.getElementById('children').value);
+
+        const checkinParts = checkin.split('/');
+        const checkoutParts = checkout.split('/');
+
+        const checkinDate = new Date(`${checkinParts[2]}-${checkinParts[1]}-${checkinParts[0]}`);
+        const checkoutDate = new Date(`${checkoutParts[2]}-${checkoutParts[1]}-${checkoutParts[0]}`);
+        const currentDate = new Date();
+        currentDate.setDate(currentDate.getDate() + 2);
+
+        if (checkinDate < currentDate) {
+            errorMessage.textContent = "Check-in date must be at least 2 days from today.";
+            errorMessage.style.display = 'block';
+            return;
+        }
+
+        if (checkinDate >= checkoutDate) {
+            errorMessage.textContent = "Check-out date must be after check-in date.";
+            errorMessage.style.display = 'block';
+            return;
+        }
+
+        const totalPeople = adults + children;
+        if (totalPeople > roomOccupancy) {
+            errorMessage.textContent = "Total number of people exceeds the room's occupancy.";
+            errorMessage.style.display = 'block';
+            return;
+        }
+
+        errorMessage.style.display = 'none';
+        form.submit();
+    });
+});
+</script>
+
+{{-- <script>
     document.addEventListener('DOMContentLoaded', function() {
     const roomNoSelect = document.getElementById('roomNo');
     const roomOccupancy = {{ $roomType->Occupancy }};
@@ -239,4 +311,4 @@
             });
 });
 
-</script>
+</script> --}}

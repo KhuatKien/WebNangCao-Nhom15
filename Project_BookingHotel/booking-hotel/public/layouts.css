@@ -99,9 +99,9 @@ body{
 }
 
 /* Content */
-/* .content{
-    height: 1000px;
-} */
+#content{
+    height: 750px;
+}
 
 /* Room Page*/
 .tittle{
@@ -148,14 +148,14 @@ body{
 
 .roompage-body-content{}
 
-.roompage-body-content .roompage-body-content-section-1{
+.roompage-body-content-section-1{
     display: grid;
     place-content: center;
     background-color: #fff;
     padding: 120px 0px 30px 0px;
 }
 
-.roompage-body-content .roompage-body-content-section-1 .roomlist{
+.roompage-body-content-section-1 .roomlist{
     padding: 0 12px
 }
 

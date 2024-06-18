@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\AboutController;
 
 //User
@@ -18,6 +19,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/room', [RoomController::class, 'roomlist'])->name('roomlist');
 Route::get('/room/{roomType}', [RoomController::class, 'detail'])->name('detail');
 Route::get('/get-rooms/{roomType}', [RoomController::class, 'getRoomsByType']);
+Route::post('/book-room', [BookingController::class, 'store'])->name('book.room');
 Route::get('/about', [AboutController::class, 'about'])->name('about');
 
 
