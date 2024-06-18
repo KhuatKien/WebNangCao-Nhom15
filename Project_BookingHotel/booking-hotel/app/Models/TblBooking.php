@@ -9,9 +9,11 @@ class TblBooking extends Model
 {
     use HasFactory;
 
+    use HasFactory;
+
     protected $table = 'tblbooking';
     protected $primaryKey = 'BookingID';
-    public $incrementing = false;
+    public $incrementing = true; // Sử dụng auto increment cho BookingID
     protected $keyType = 'string';
     public $timestamps = false;
 

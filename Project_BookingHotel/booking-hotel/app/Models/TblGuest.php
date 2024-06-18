@@ -7,14 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class TblGuest extends Model
 {
+    use HasFactory;
+
     protected $table = 'tblguest';
     protected $primaryKey = 'GuestID';
+    public $incrementing = true;
+    protected $keyType = 'int';
     public $timestamps = false;
-    // public $incrementing = true;
-    // protected $keyType = 'int';
 
     protected $fillable = [
-        'GuestID', 'DOB', 'Gender', 'PhoneNo', 'PassportNo', 'Address', 'Postcode', 'City', 'Country'
+        'DOB', 'Gender', 'PhoneNo', 'PassportNo', 'Address', 'Postcode', 'City', 'Country', 'user_id'
     ];
 
     public function user()
