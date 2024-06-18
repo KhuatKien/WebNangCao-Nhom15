@@ -11,6 +11,9 @@ use App\Http\Controllers\TableAdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckAdmin;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoomController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\AboutController;
 
 //User
 Route::get('/', [HomeController::class, 'index'])->name('index');
@@ -19,6 +22,12 @@ Route::post('/login', [LoginController::class, 'postLogin']);
 Route::get('/register', [LoginController::class, 'register'])->name('register');
 Route::post('/register', [LoginController::class, 'postRegister']);
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/room', [RoomController::class, 'roomlist'])->name('roomlist');
+Route::get('/room/{roomType}', [RoomController::class, 'detail'])->name('detail');
+Route::get('/get-rooms/{roomType}', [RoomController::class, 'getRoomsByType']);
+Route::post('/book-room', [BookingController::class, 'store'])->name('book.room');
+Route::get('/about', [AboutController::class, 'about'])->name('about');
+
 
 
 //SSO Google

@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class TblBooking extends Model
 {
+    use HasFactory;
+
     protected $table = 'tblbooking';
     protected $primaryKey = 'BookingID';
     public $incrementing = false;
@@ -14,7 +16,7 @@ class TblBooking extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'BookingID', 'GuestID', 'RoomNo', 'BookingDate', 'BookingTime', 'ArrivalDate', 'DepartureDate', 'EstArrivalTime', 'EstDepartureTime', 'NumAdults', 'NumChildren', 'Status'
+        'GuestID', 'RoomNo', 'BookingDate', 'BookingTime', 'ArrivalDate', 'DepartureDate', 'NumAdults', 'NumChildren', 'Status'
     ];
 
     // public function room()

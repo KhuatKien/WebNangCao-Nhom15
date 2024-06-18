@@ -10,6 +10,8 @@ class TblGuest extends Model
     protected $table = 'tblguest';
     protected $primaryKey = 'GuestID';
     public $timestamps = false;
+    public $incrementing = true;
+    protected $keyType = 'int';
 
     protected $fillable = [
         'GuestID', 'DOB', 'Gender', 'PhoneNo', 'PassportNo', 'Address', 'Postcode', 'City', 'Country'

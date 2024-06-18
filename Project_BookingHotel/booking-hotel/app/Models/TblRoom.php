@@ -1,5 +1,7 @@
 <?php
 
+// app/Models/TblRoom.php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;

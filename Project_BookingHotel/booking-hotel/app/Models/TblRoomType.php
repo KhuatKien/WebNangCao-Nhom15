@@ -7,14 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class TblRoomType extends Model
 {
+    use HasFactory;
+
     protected $table = 'tblroomtype';
     protected $primaryKey = 'RoomType';
-    public $incrementing = false;
-    protected $keyType = 'string';
+    public $incrementing = false; // Nếu RoomType là chuỗi và không phải số nguyên
+    protected $keyType = 'string'; // Nếu RoomType là chuỗi
     public $timestamps = false;
 
     protected $fillable = [
-        'RoomPrice', 'DefaultRoomPrice', 'RoomDesc', 'Occupancy'
+        'RoomType', 'RoomPrice', 'RoomDesc', 'Occupancy', 'image_path',
     ];
 
     public function rooms()
