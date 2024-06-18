@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
     <div class="res-wrapper">
         <div class="restaurant-about">
