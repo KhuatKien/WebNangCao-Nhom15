@@ -1,4 +1,3 @@
-<!-- resources/views/admin/user/index.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,6 +29,10 @@
     <style>
         .action-btn {
             margin-right: 5px;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: flex-end;
         }
     </style>
 </head>
@@ -176,8 +179,8 @@
                     Table is empty
                     @endif
                 </td>
-                <td>
-                    <button class="btn btn-warning action-btn" onclick="editTable('{{ $table->TableID }}', '{{ $table->Occupancy }}', '{{ $table->TableStatus }}')">Edit</button>
+                <td class="action-buttons">
+                    <button class="btn btn-warning action-btn" onclick="editTable('{{ $table->TableID }}', '{{ $table->Occupancy }}', '{{ $table->TableStatus }}')">Confirm</button>
                     <button class="btn btn-danger action-btn" onclick="deleteTable('{{ $table->TableID }}')">Delete</button>
                     <form id="delete-form-{{ $table->TableID }}" action="{{ route('admin.tables.destroy', $table->TableID) }}" method="POST" style="display: none;">
                     @csrf

@@ -20,7 +20,7 @@ class CheckAdmin
             if (Auth::user()->role === 1) {
                 return $next($request);
             } elseif (Auth::user()->role === 0) {
-                return redirect('/')->with('error', 'You do not have access to this page');
+                return redirect('/loginadmin')->with('error', 'You do not have access to this page');
             }
         }
         // Redirect to admin login page if not authenticated or not admin
