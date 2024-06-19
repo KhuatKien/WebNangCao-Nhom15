@@ -10,7 +10,7 @@
                 </div>
             @endif
             @if($errors->any())
-                <div class="alert alert-danger" style="color:#fff; font-size: 24px; margin-bottom:8px">
+                <div class="alert alert-danger" style="color:red; font-size: 30px; margin-bottom:8px">
                     <div>
                         @foreach ($errors->all() as $error)
                             {{ $error }}

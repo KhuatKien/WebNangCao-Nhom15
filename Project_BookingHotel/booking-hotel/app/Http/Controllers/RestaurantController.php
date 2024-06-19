@@ -36,7 +36,7 @@ class RestaurantController extends Controller
 
         // Kiểm tra số lượng người có vượt quá sức chứa của bàn không
         if ($request->input('num_of_people') > $table->Occupancy) {
-            return redirect()->back()->withErrors(['num_of_people' => 'Vượt quá sức chứa của bàn']);
+            return redirect()->back()->withErrors(['num_of_people' => 'Exceeding table capacity']);
         }
 
         // Tiến hành đặt bàn nếu hợp lệ
