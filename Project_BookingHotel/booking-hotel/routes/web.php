@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\AboutController;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\URL;
 
 //User
 Route::get('/', [HomeController::class, 'index'])->name('index');
@@ -70,3 +72,7 @@ Route::post('/profile/update', [ProfileController::class, 'updateProfile'])->nam
 
 //Contact
 Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
+
+if(App::environment('production')){
+    URL::forceScheme('https');
+}
