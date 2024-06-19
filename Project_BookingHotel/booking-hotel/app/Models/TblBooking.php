@@ -9,22 +9,15 @@ class TblBooking extends Model
 {
     use HasFactory;
 
-    use HasFactory;
-
     protected $table = 'tblbooking';
     protected $primaryKey = 'BookingID';
-    public $incrementing = true; // Sử dụng auto increment cho BookingID
-    protected $keyType = 'string';
+    public $incrementing = true;
+    protected $keyType = 'int';
     public $timestamps = false;
 
     protected $fillable = [
         'GuestID', 'RoomNo', 'BookingDate', 'BookingTime', 'ArrivalDate', 'DepartureDate', 'NumAdults', 'NumChildren', 'Status'
     ];
-
-    // public function room()
-    // {
-    //     return $this->belongsTo(TblRoom::class, 'RoomNo', 'RoomNo');
-    // }
 
     public function guest()
     {
