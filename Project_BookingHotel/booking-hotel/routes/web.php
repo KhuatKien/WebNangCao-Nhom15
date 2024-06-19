@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\TableAdminController;
+use App\Http\Controllers\RoomAdminController;
 use App\Http\Controllers\RoomTypeAdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckAdmin;
@@ -26,7 +27,8 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/room', [RoomController::class, 'roomlist'])->name('roomlist');
 Route::get('/room/{roomType}', [RoomController::class, 'detail'])->name('detail');
 Route::get('/get-rooms/{roomType}', [RoomController::class, 'getRoomsByType'])->name('get.rooms.by.type');
-Route::post('/booking/store', [BookingController::class, 'store'])->name('booking.store');Route::get('/about', [AboutController::class, 'about'])->name('about');
+Route::post('/booking/store', [BookingController::class, 'store'])->name('booking.store');
+Route::get('/about', [AboutController::class, 'about'])->name('about');
 
 
 //SSO Google
@@ -59,10 +61,15 @@ Route::middleware(['auth', CheckAdmin::class])->group(function () {
     Route::put('/admin/tables/{id}', [TableAdminController::class, 'update'])->name('admin.tables.update');
     Route::delete('/admin/tables/{id}', [TableAdminController::class, 'destroy'])->name('admin.tables.destroy');
 
-    //RoomType Adimin
+    //RoomType Admin
     Route::get('/admin/roomtypes', [RoomTypeAdminController::class, 'index'])->name('admin.roomtypes.index');
     Route::put('/admin/roomtypes/{id}/activate', [RoomTypeAdminController::class, 'activate'])->name('admin.roomtypes.activate');
     Route::put('/admin/roomtypes/{id}/deactivate', [RoomTypeAdminController::class, 'deactivate'])->name('admin.roomtypes.deactivate');
+
+    //Room Admin
+    Route::get('/admin/rooms', [RoomAdminController::class, 'index'])->name('admin.rooms.index');
+    Route::post('/admin/rooms', [RoomAdminController::class, 'store'])->name('admin.rooms.store');
+    Route::delete('/admin/rooms/{id}', [RoomAdminController::class, 'destroy'])->name('admin.rooms.destroy');
 });
 
 //Restaurant

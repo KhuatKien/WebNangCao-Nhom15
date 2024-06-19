@@ -47,8 +47,6 @@ class BookingController extends Controller
         $room->Status = 0;
         $room->save();
 
-        // return response() -> alert('Room booked successfully. Your request will be verified within 24 hours');
-        // return response()->json(['message' => 'Room booked successfully. Your request will be verified within 24 hours']);
         // Redirect back with success message
         return redirect()->back()->with('success', 'Room booked successfully. Your request will be verified within 24 hours');
     }
