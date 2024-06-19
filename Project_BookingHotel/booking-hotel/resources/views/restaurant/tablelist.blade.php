@@ -9,6 +9,15 @@
                     {{ session('success') }}
                 </div>
             @endif
+            @if($errors->any())
+                <div class="alert alert-danger" style="color:#fff; font-size: 24px; margin-bottom:8px">
+                    <div>
+                        @foreach ($errors->all() as $error)
+                            {{ $error }}
+                        @endforeach
+                    </div>
+                </div>
+            @endif
 
             <div class="tables-container">
                 @foreach($tables as $table)
@@ -32,40 +41,41 @@
 
         <!-- Booking Form Modal -->
         <div id="bookingFormModal" class="modal">
-            <div class="modal-content">
-                <form id="bookingForm" action="{{ route('table.book') }}" method="POST">
-                    @csrf
-                    <div class="form-group">
-                        <label for="guest_name">Guest Name:</label>
-                        <input type="text" name="guest_name" id="guest_name" class="form-control" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="table_id">Table ID:</label>
-                        <input type="text" name="table_id" id="table_id" class="form-control" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="guest_id">Guest ID:</label>
-                        <input type="text" name="guest_id" id="guest_id" class="form-control" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="book_id">Book ID:</label>
-                        <input type="text" name="book_id" id="book_id" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="book_date">Table Reservation Date:</label>
-                        <input type="date" name="book_date" id="book_date" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="num_of_people">Amount Of people:</label>
-                        <input type="number" name="num_of_people" id="num_of_people" class="form-control" required>
-                    </div>
-                    <div class="button-group">
-                        <button type="submit" class="btn btn-primary">Confirm</button>
-                        <button type="button" class="btn btn-secondary" onclick="closeBookingForm()">Cancel</button>
-                    </div>
-                </form>
+    <div class="modal-content">
+        <form id="bookingForm" action="{{ route('table.book') }}" method="POST">
+            @csrf
+            <div class="form-group">
+                <label for="guest_name">Guest Name:</label>
+                <input type="text" name="guest_name" id="guest_name" class="form-control" readonly>
             </div>
-        </div>
+            <div class="form-group">
+                <label for="table_id">Table ID:</label>
+                <input type="text" name="table_id" id="table_id" class="form-control" readonly>
+            </div>
+            <div class="form-group">
+                <label for="guest_id">Guest ID:</label>
+                <input type="text" name="guest_id" id="guest_id" class="form-control" readonly>
+            </div>
+            <div class="form-group">
+                <label for="book_id">Book ID:</label>
+                <input type="text" name="book_id" id="book_id" class="form-control" value="{{ $nextBookID }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="book_date">Table Reservation Date:</label>
+                <input type="date" name="book_date" id="book_date" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="num_of_people">Amount Of people:</label>
+                <input type="number" name="num_of_people" id="num_of_people" class="form-control" required>
+            </div>
+            <div class="button-group">
+                <button type="submit" class="btn btn-primary">Confirm</button>
+                <button type="button" class="btn btn-secondary" onclick="closeBookingForm()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
     @endsection
 
     <style>
@@ -204,10 +214,12 @@
             document.getElementById('table_id').value = tableID;
             document.getElementById('guest_id').value = guestID;
             document.getElementById('guest_name').value = guestName;
+            document.getElementById('book_id').value = '{{ $nextBookID }}'; // Set the next Book ID
             document.getElementById('bookingFormModal').style.display = 'flex';
-        }
+        }   
 
         function closeBookingForm() {
             document.getElementById('bookingFormModal').style.display = 'none';
         }
+
     </script>
