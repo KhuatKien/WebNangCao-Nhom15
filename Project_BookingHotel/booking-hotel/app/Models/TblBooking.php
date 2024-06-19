@@ -28,4 +28,9 @@ class TblBooking extends Model
     {
         return $this->hasOne(TblBill::class, 'BookingID', 'BookingID');
     }
+    
+    public function room()
+    {
+        return $this->belongsTo(TblRoom::class, 'RoomNo', 'RoomNo'); // Định nghĩa mối quan hệ belongsTo với model TblRoom
+    }
 }

@@ -10,6 +10,7 @@ use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\TableAdminController;
 use App\Http\Controllers\RoomAdminController;
 use App\Http\Controllers\RoomTypeAdminController;
+use App\Http\Controllers\BookingAdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckAdmin;
 use Illuminate\Support\Facades\Route;
@@ -70,6 +71,11 @@ Route::middleware(['auth', CheckAdmin::class])->group(function () {
     Route::get('/admin/rooms', [RoomAdminController::class, 'index'])->name('admin.rooms.index');
     Route::post('/admin/rooms', [RoomAdminController::class, 'store'])->name('admin.rooms.store');
     Route::delete('/admin/rooms/{id}', [RoomAdminController::class, 'destroy'])->name('admin.rooms.destroy');
+
+    // Booking Admin
+    Route::get('/admin/bookings', [BookingAdminController::class, 'index'])->name('admin.bookings.index');
+    Route::put('/admin/bookings/{id}/confirm', [BookingAdminController::class, 'confirmBooking'])->name('admin.bookings.confirm');
+    Route::post('/admin/bookings/{id}/bill', [BookingAdminController::class, 'createBill'])->name('admin.bookings.bill');
 });
 
 //Restaurant

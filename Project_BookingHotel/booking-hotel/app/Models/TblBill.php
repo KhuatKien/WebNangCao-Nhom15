@@ -14,7 +14,7 @@ class TblBill extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'BillID', 'BookingID', 'RoomCharge', 'RoomService', 'RestaurantCharges', 'PaymentDate', 'PaymentMode', 'CreditCardNo', 'ExpireDate', 'TotalPrice'
+        'BillID', 'BookingID', 'RoomCharge', 'PaymentDate', 'ExpireDate', 'TotalPrice'
     ];
 
     public function booking()
