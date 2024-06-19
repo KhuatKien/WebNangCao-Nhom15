@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\TblBooking;
 use App\Models\TblGuest;
+use App\Models\TblRoom;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -42,6 +43,12 @@ class BookingController extends Controller
             'Status' => 0, // Assuming default status as 0
         ]);
 
+        $room = TblRoom::where('RoomNo', $request->roomNo)->first();
+        $room->Status = 0;
+        $room->save();
+
+        // return response() -> alert('Room booked successfully. Your request will be verified within 24 hours');
+        // return response()->json(['message' => 'Room booked successfully. Your request will be verified within 24 hours']);
         // Redirect back with success message
         return redirect()->back()->with('success', 'Room booked successfully. Your request will be verified within 24 hours');
     }

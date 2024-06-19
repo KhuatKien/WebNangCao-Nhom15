@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\TableAdminController;
+use App\Http\Controllers\RoomTypeAdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\CheckAdmin;
 use Illuminate\Support\Facades\Route;
@@ -57,6 +58,11 @@ Route::middleware(['auth', CheckAdmin::class])->group(function () {
     Route::post('/admin/tables', [TableAdminController::class, 'store'])->name('admin.tables.store');
     Route::put('/admin/tables/{id}', [TableAdminController::class, 'update'])->name('admin.tables.update');
     Route::delete('/admin/tables/{id}', [TableAdminController::class, 'destroy'])->name('admin.tables.destroy');
+
+    //RoomType Adimin
+    Route::get('/admin/roomtypes', [RoomTypeAdminController::class, 'index'])->name('admin.roomtypes.index');
+    Route::put('/admin/roomtypes/{id}/activate', [RoomTypeAdminController::class, 'activate'])->name('admin.roomtypes.activate');
+    Route::put('/admin/roomtypes/{id}/deactivate', [RoomTypeAdminController::class, 'deactivate'])->name('admin.roomtypes.deactivate');
 });
 
 //Restaurant

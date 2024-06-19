@@ -16,7 +16,7 @@ class TblRoomType extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'RoomType', 'RoomPrice', 'RoomDesc', 'Occupancy', 'image_path',
+        'RoomType', 'RoomPrice', 'RoomDesc', 'Occupancy', 'image_path', 'Status',
     ];
 
     public function rooms()

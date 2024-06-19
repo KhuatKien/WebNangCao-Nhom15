@@ -131,6 +131,11 @@
                         </select>
                     </div>
                     <button type="submit">Book now</button>
+                    @if(session('success'))
+                        <div style="color:green;" class="alert alert-success table-message" >
+                            {{ session('success') }}
+                        </div>
+                    @endif
                 </form>
                 
                 <div id="errorMessage" style="display: none; color: red;"></div>
@@ -188,46 +193,50 @@
             input.placeholder = 'dd/mm/yyyy';
         });
     
-        const form = document.getElementById('bookingForm');
-        const errorMessage = document.getElementById('errorMessage');
-    
         form.addEventListener('submit', function(event) {
             event.preventDefault();
-    
+
             const checkin = document.getElementById('checkin').value;
             const checkout = document.getElementById('checkout').value;
             const adults = parseInt(document.getElementById('adults').value);
             const children = parseInt(document.getElementById('children').value);
-    
-            const checkinParts = checkin.split('/');
-            const checkoutParts = checkout.split('/');
-    
-            const checkinDate = new Date(`${checkinParts[2]}-${checkinParts[1]}-${checkinParts[0]}`);
-            const checkoutDate = new Date(`${checkoutParts[2]}-${checkoutParts[1]}-${checkoutParts[0]}`);
-            const currentDate = new Date();
-            currentDate.setDate(currentDate.getDate() + 2);
-    
-            if (checkinDate < currentDate) {
-                errorMessage.textContent = "Check-in date must be at least 2 days from today.";
+            const roomNo = document.getElementById('roomNo').value;
+
+            // Validate form inputs (front-end validation for date and number of guests)
+
+            fetch(form.action, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({
+                    roomNo: roomNo,
+                    checkin: checkin,
+                    checkout: checkout,
+                    adults: adults,
+                    children: children
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Display alert message
+                alert(data.message);
+
+                // Optional: Clear form fields after successful submission
+                form.reset();
+
+                // Optional: Hide error message if it's visible
+                errorMessage.style.display = 'none';
+
+                // Reload the current page (or redirect as needed)
+                window.location.reload();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                errorMessage.textContent = 'An error occurred while processing your request.';
                 errorMessage.style.display = 'block';
-                return;
-            }
-    
-            if (checkinDate >= checkoutDate) {
-                errorMessage.textContent = "Check-out date must be after check-in date.";
-                errorMessage.style.display = 'block';
-                return;
-            }
-    
-            const totalPeople = adults + children;
-            if (totalPeople > roomOccupancy) {
-                errorMessage.textContent = "Total number of people exceeds the room's occupancy.";
-                errorMessage.style.display = 'block';
-                return;
-            }
-    
-            errorMessage.style.display = 'none';
-            form.submit();
+            });
         });
     });
     </script>

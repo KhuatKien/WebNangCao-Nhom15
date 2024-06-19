@@ -33,7 +33,7 @@ class RoomController extends Controller
 
     public function getRoomsByType($roomType)
     {
-        $rooms = TblRoom::where('RoomType', $roomType)->get();
+        $rooms = TblRoom::where('RoomType', $roomType)->where('Status', 1)->get();
         return response()->json($rooms);
     }
 }
