@@ -58,7 +58,9 @@ Route::middleware(['auth', CheckAdmin::class])->group(function () {
     Route::get('/admin/tables', [TableAdminController::class, 'index'])->name('admin.tables.index');
     Route::post('/admin/tables', [TableAdminController::class, 'store'])->name('admin.tables.store');
     Route::put('/admin/tables/{id}', [TableAdminController::class, 'update'])->name('admin.tables.update');
+    Route::post('/admin/tables/confirm/{id}', [TableAdminController::class, 'confirm'])->name('admin.tables.confirm');
     Route::delete('/admin/tables/{id}', [TableAdminController::class, 'destroy'])->name('admin.tables.destroy');
+
 });
 
 //Restaurant

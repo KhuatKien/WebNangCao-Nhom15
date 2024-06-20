@@ -180,7 +180,8 @@
                     @endif
                 </td>
                 <td class="action-buttons">
-                    <button class="btn btn-warning action-btn" onclick="editTable('{{ $table->TableID }}', '{{ $table->Occupancy }}', '{{ $table->TableStatus }}')">Confirm</button>
+                  <button style="background-color: green; color:#fff;" class="btn btn-warning action-btn" onclick="confirmTable('{{ $table->TableID }}')">Confirm</button>
+                    <button class="btn btn-warning action-btn" onclick="editTable('{{ $table->TableID }}', '{{ $table->Occupancy }}', '{{ $table->TableStatus }}')">Edit</button>
                     <button class="btn btn-danger action-btn" onclick="deleteTable('{{ $table->TableID }}')">Delete</button>
                     <form id="delete-form-{{ $table->TableID }}" action="{{ route('admin.tables.destroy', $table->TableID) }}" method="POST" style="display: none;">
                     @csrf
@@ -312,10 +313,19 @@
 <script src="{{asset('asset/js')}}/pages/dashboard.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- jQuery -->
+<script src="{{asset('asset/plugins')}}/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="{{asset('asset/plugins')}}/jquery-ui/jquery-ui.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="{{asset('asset/plugins')}}/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="{{asset('asset/js')}}/adminlte.js"></script>
 
-    <script>
+
+<script>
     function editTable(tableID, occupancy, tableStatus) {
         document.getElementById('edit_id').value = tableID;
         document.getElementById('edit_Occupancy').value = occupancy;
@@ -327,11 +337,30 @@
         $('#editTableModal').modal('show');
     }
 
+    function confirmTable(tableID) {
+    if (confirm('Are you sure you want to confirm this table?')) {
+        $.ajax({
+            url: '/admin/tables/confirm/' + tableID,
+            method: 'POST',
+            data: {
+                _token: '{{ csrf_token() }}',
+            },
+            success: function(response) {
+                alert(response.message);
+                location.reload();
+            },
+            error: function(xhr) {
+                alert('Something went wrong. Please try again.');
+            }
+        });
+      }
+    } 
+
     function deleteTable(tableID) {
         if (confirm('Are you sure you want to delete this table?')) {
             $('#delete-form-' + tableID).submit();
         }
     }
-    </script>
+</script>
 </body>
 </html>

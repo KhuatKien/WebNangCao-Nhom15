@@ -45,6 +45,28 @@ class TableAdminController extends Controller
         return redirect()->route('admin.tables.index')->with('success', 'Table updated successfully.');
     }
 
+    public function confirm($id)
+    {
+    $table = Tbltable::findOrFail($id);
+    $table->TableStatus = 0;
+    $table->save();
+
+    return response()->json(['message' => 'Table status updated successfully.']);
+    }
+
+    public function cancel($id)
+    {
+    $table = Tbltable::find($id);
+    if ($table) {
+        $table->TableStatus = 1; // Giá trị mà bạn muốn cập nhật
+        $table->save();
+
+        return response()->json(['message' => 'Table status has been updated to cancelled.']);
+    }
+
+    return response()->json(['message' => 'Table not found.'], 404);
+    }
+
     public function destroy($id)
     {
         $table = Tbltable::findOrFail($id);

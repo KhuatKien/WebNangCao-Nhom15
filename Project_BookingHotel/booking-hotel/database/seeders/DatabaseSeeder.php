@@ -23,7 +23,11 @@ class DatabaseSeeder extends Seeder
         $this->call([
             // RoomTypeSeeder::class,
             // RoomSeeder::class,
+<<<<<<< HEAD
             UserSeeder::class
+=======
+            UserSeeder::class,
+>>>>>>> DuyBimNew
         ]);
     }
 }

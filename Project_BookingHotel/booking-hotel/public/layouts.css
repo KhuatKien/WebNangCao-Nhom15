@@ -1208,45 +1208,45 @@ button:hover {
     padding-bottom: 100px;
     margin-top: 750px;
 }
-
+    
 .res-content-top{
     width: 1140px;
     height: 138px;
     margin: 0 auto;
     padding-top: 100px;
 }
-
+    
 .res-content-top i {
     font-size: 16px;
     color: #E4A853;
 }
-
+    
 .res-content-top-p1 {
     color: #666;
     font-size: 16px;
     margin: 16px 0;
     letter-spacing: 6px;
 }
-
+    
 .res-content-top-p2{
     font-size: 50px;
     color: #222;
     font-family: 'Gilda Display', serif;
 }
-
+    
 .res-content-bottom{
     width: 1140px;
     margin: 0 auto;
     margin-top: 140px;
 }
-
+    
 .res-content-bottom p{
     font-size: 18px;
     color: #666;
     letter-spacing: 1.2 px;
     line-height: 26.25px;
 }
-
+    
 .res-content-bottom h6 {
     color: #222;
     font-size: 24px;
@@ -1254,16 +1254,16 @@ button:hover {
     font-weight: 400;
     font-family: 'Gilda Display', serif;
 }
-
+    
 .clock {
     display: flex;
     margin: 8px 0;
 }
-
+    
 .clock p{
     font-size: 18px;
 }
-
+    
 .clock i {
     font-size: 16px;
     color: #E4A853;
@@ -1273,20 +1273,18 @@ button:hover {
 
 .restaurant-menu {
     width: 100%;
-    height: 787px;
+    padding: 60px 0;
     background-color: #222;
     text-align: center;
+    padding-bottom: 50px;
 }
 
 .menu-title {
-    width: 1140px;
-    height: 109px;
+    max-width: 1140px;
     margin: 0 auto;
-    text-align: center;
-    padding-top: 40px;
 }
 
-.menu-title-p1{
+.menu-title-p1 {
     color: #aa8453;
     font-size: 16px;
     letter-spacing: 6px;
@@ -1296,62 +1294,50 @@ button:hover {
     font-size: 50px;
     color: #fff;
     font-family: 'Gilda Display', serif;
-    margin-top: 10px;
+    margin: 10px 0;
 }
 
 .menu-type {
-    width: 1140px;
-    margin: 0 auto;
+    max-width: 1140px;
+    margin: 40px auto 0;
     font-family: 'Gilda Display', serif;
+    text-align: center;
 }
 
-.menu-type-item {
-    width: 926px;
-    height: 137px;
-    margin: 0 auto;
-    text-align: center;
-    margin-top: 60px;
+.menu-type-item ul {
+    padding: 0;
+    list-style: none;
 }
 
 .menu-type-item ul li {
-    display: inline;
+    display: inline-block;
     color: #fff;
     font-size: 24px;
-    margin: 0 40px;
+    margin: 0 20px;
     font-weight: 300;
-    /* border: 1px solid #aa8453 ; */
     padding: 10px 30px;
+    transition: color 0.3s ease;
+}
+
+.menu-type-item ul li:hover {
+    color: #aa8453;
+    cursor: pointer;
 }
 
 .menu-list {
-    width: 1140px;
+    max-width: 1140px;
+    margin: 40px auto 0;
     display: flex;
-    margin: 0 auto;
-    padding-left: 80px;
-    justify-content: space-around;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
-.menu-list-left {
-    margin-left: -80px;
+.menu-list-left,
+.menu-list-right {
+    width: 48%;
 }
 
-.menu-list-left h5 {
-    color: #aa8453;
-    font-size: 22px;
-    font-weight: 300;
-    letter-spacing: 1.6px;
-    border-bottom: 1px dashed #AA8453;
-    padding-bottom: 8px;
-    font-family: 'Gilda Display', serif;
-}
-
-.menu-list-left p {
-    color: #adadad;
-    font-size: 18px;
-    margin: 10px 0;
-    letter-spacing: 1.6px;
-}
-
+.menu-list-left h5,
 .menu-list-right h5 {
     color: #aa8453;
     font-size: 22px;
@@ -1359,9 +1345,11 @@ button:hover {
     letter-spacing: 1.6px;
     border-bottom: 1px dashed #AA8453;
     padding-bottom: 8px;
-    font-family: 'Gilda Display', serif;    
+    font-family: 'Gilda Display', serif;
+    margin: 20px 0;
 }
 
+.menu-list-left p,
 .menu-list-right p {
     color: #adadad;
     font-size: 18px;
@@ -1370,30 +1358,41 @@ button:hover {
 }
 
 .restaurant-menu button {
-    width: 122px;
+    width: 150px;
     height: 44px;
-    margin-top: 80px;
+    margin-top: 40px;
     background-color: #AA8453;
     color: #fff;
     border: none;
-    font-size: 12px;
+    font-size: 14px;
     cursor: pointer;
-    transition: all 0.1s ease-in-out;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0;
+    margin: 0 auto;
+    margin-top: 50px;
 }
 
 .restaurant-menu button a {
     color: #fff;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 44px;
 }
 
 .restaurant-menu button:hover {
     background-color: #1D1D1F;
 }
 
-.restaurant-message-container{
-    width: 736px;
-    height: 375px;
-    margin: 0 auto;
-    margin-top: 90px;
+.restaurant-message-container {
+    max-width: 736px;
+    margin: 90px auto;
+    text-align: center;
 }
 
 .restaurant-message-container h6 {
@@ -1415,24 +1414,36 @@ button:hover {
     color: #fff;
     font-size: 16px;
     letter-spacing: 1.6px;
-    line-height: 26.25px;
+    line-height: 1.5;
 }
 
 .restaurant-message-info {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
 }
 
 .restaurant-message-info img {
     width: 70px;
     height: 70px;
     border-radius: 50%;
-    margin-top: 20px;
     margin-right: 20px;
+}
+
+.restaurant-message-info-content {
+    text-align: left;
+}
+
+.restaurant-message-info-content span {
+    display: block;
+    margin-bottom: 8px;
 }
 
 .restaurant-message-info-content i {
     font-size: 8px;
     color: #AB844F;
+    margin-right: 2px;
 }
 
 .restaurant-message-info-content h6 {

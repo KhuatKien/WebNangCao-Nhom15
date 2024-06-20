@@ -13,10 +13,13 @@ class RestaurantController extends Controller
         return view('restaurant/restaurant');
     }
 
-    public function tablelist(){
+    public function tablelist() {
         $tables = Tbltable::all();
-        return view('restaurant/tablelist', compact('tables'));
+        $latestBooking = TblBookRes::orderBy('BookID', 'desc')->first();
+        $nextBookID = $latestBooking ? $latestBooking->BookID + 1 : 1;
+        return view('restaurant.tablelist', compact('tables', 'nextBookID'));
     }
+    
 
     public function bookTable(Request $request)
     {
@@ -28,6 +31,15 @@ class RestaurantController extends Controller
             'num_of_people' => 'required|integer',
         ]);
 
+        // Lấy thông tin của bàn
+        $table = Tbltable::find($request->input('table_id'));
+
+        // Kiểm tra số lượng người có vượt quá sức chứa của bàn không
+        if ($request->input('num_of_people') > $table->Occupancy) {
+            return redirect()->back()->withErrors(['num_of_people' => 'Exceeding table capacity']);
+        }
+
+        // Tiến hành đặt bàn nếu hợp lệ
         $booking = new TblBookRes();
         $booking->BookID = $request->input('book_id');
         $booking->GuestID = $request->input('guest_id');
@@ -37,10 +49,10 @@ class RestaurantController extends Controller
         $booking->StatusRes = '1'; // Status '1' for 'Pending'
         $booking->save();
 
-        $table = TblTable::find($request->input('table_id'));
         $table->TableStatus = '1'; // Mark the table as pending
         $table->save();
 
         return redirect()->back()->with('success', 'Waiting for hotel confirmation');
-    }
+    }   
+
 }
