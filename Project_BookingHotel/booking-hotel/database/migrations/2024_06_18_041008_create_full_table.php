@@ -11,9 +11,25 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Creating tblguest first since it has no foreign keys
+        Schema::create('tblroomtype', function (Blueprint $table) {
+            $table->string('RoomType', 25)->primary();
+            $table->double('RoomPrice');
+            $table->text('RoomDesc');
+            $table->integer('Occupancy');
+            $table->string('image_path', 50);
+            $table->tinyInteger('Status')->default(1);
+        
+        });
+
+        Schema::create('tbltable', function (Blueprint $table) {
+            $table->string('TableID', 10)->primary();
+            $table->integer('Occupancy');
+            $table->tinyInteger('TableStatus')->default(0);
+            
+        });
+
         Schema::create('tblguest', function (Blueprint $table) {
-            $table->id('GuestID');
+            $table->bigIncrements('GuestID');
             $table->date('DOB');
             $table->string('Gender', 6);
             $table->string('PhoneNo', 15);
@@ -22,68 +38,46 @@ return new class extends Migration
             $table->string('Postcode', 10);
             $table->string('City', 50);
             $table->string('Country', 50);
+
             $table->foreign('GuestID')->references('id')->on('users');
         });
 
-        // Creating tblroomtype second since it has no foreign keys
-        Schema::create('tblroomtype', function (Blueprint $table) {
-            $table->string('RoomType', 25)->primary();
-            $table->double('RoomPrice');
-            $table->text('RoomDesc');
-            $table->integer('Occupancy');
-            $table->string('image_path', 50);
-            $table->tinyInteger('Status')->default(1);
-        });
-
-        // Creating tblroom which has foreign key references to tblroomtype
         Schema::create('tblroom', function (Blueprint $table) {
-            $table->integer('RoomNo')->primary();
+            $table->increments('RoomNo');
             $table->string('RoomType', 25);
             $table->tinyInteger('Status')->default(1);
+
             $table->foreign('RoomType')->references('RoomType')->on('tblroomtype');
         });
 
-        // Creating tbltable since it has no foreign keys
-        Schema::create('tbltable', function (Blueprint $table) {
-            $table->string('TableID', 10)->primary();
-            $table->integer('Occupancy');
-            $table->tinyInteger('TableStatus')->default(0);
-        });
-
-        // Creating tblbooking which has foreign key references to tblguest and tblroom
         Schema::create('tblbooking', function (Blueprint $table) {
-            $table->string('BookingID', 10)->primary();
+            $table->increments('BookingID');
             $table->unsignedBigInteger('GuestID');
-            $table->integer('RoomNo');
+            $table->unsignedInteger('RoomNo');
             $table->date('BookingDate');
             $table->time('BookingTime', 6);
             $table->date('ArrivalDate');
             $table->date('DepartureDate');
-            $table->time('EstArrivalTime', 6);
-            $table->time('EstDepartureTime', 6);
             $table->integer('NumAdults');
             $table->integer('NumChildren');
             $table->tinyInteger('Status')->default(0);
+
+
             $table->foreign('RoomNo')->references('RoomNo')->on('tblroom');
             $table->foreign('GuestID')->references('GuestID')->on('tblguest');
         });
 
-        // Creating tblbill which has foreign key references to tblbooking
         Schema::create('tblbill', function (Blueprint $table) {
-            $table->string('BillID', 10)->primary();
-            $table->string('BookingID', 10);
+            $table->increments('BillID');
+            $table->unsignedInteger('BookingID');
             $table->double('RoomCharge');
-            $table->double('RoomService');
-            $table->double('RestaurantCharges');
             $table->date('PaymentDate');
-            $table->string('PaymentMode', 10);
-            $table->string('CreditCardNo', 20);
             $table->date('ExpireDate');
             $table->double('TotalPrice');
+
             $table->foreign('BookingID')->references('BookingID')->on('tblbooking');
         });
 
-        // Creating tblbookres which has foreign key references to tblguest and tbltable
         Schema::create('tblbookres', function (Blueprint $table) {
             $table->string('BookID', 10)->primary();
             $table->unsignedBigInteger('GuestID');
@@ -91,8 +85,8 @@ return new class extends Migration
             $table->date('BookDate');
             $table->integer('NumofPeople');
             $table->tinyInteger('StatusRes')->default(0);
-            $table->foreign('GuestID')->references('GuestID')->on('tblguest');
             $table->foreign('TableID')->references('TableID')->on('tbltable');
+            $table->foreign('GuestID')->references('GuestID')->on('tblguest');
         });
     }
 
@@ -101,12 +95,12 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('tblbookres');
         Schema::dropIfExists('tblbill');
         Schema::dropIfExists('tblbooking');
-        Schema::dropIfExists('tblbookres');
-        Schema::dropIfExists('tblguest');
+        Schema::dropIfExists('tbltable');
         Schema::dropIfExists('tblroom');
         Schema::dropIfExists('tblroomtype');
-        Schema::dropIfExists('tbltable');
+        Schema::dropIfExists('tblguest');
     }
 };
