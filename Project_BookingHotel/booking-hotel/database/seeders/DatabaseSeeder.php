@@ -21,13 +21,11 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            // RoomTypeSeeder::class,
-            // RoomSeeder::class,
-<<<<<<< HEAD
+            RoomTypeSeeder::class,
+            RoomSeeder::class,
             UserSeeder::class
-=======
-            UserSeeder::class,
->>>>>>> DuyBimNew
+
+
         ]);
     }
 }
