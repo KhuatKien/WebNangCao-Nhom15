@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>RoomType Dashboard</title>
+<title>Bills Dashboard</title>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -116,7 +116,7 @@
             </a>
         </li>
         <li class="nav-item ">
-            <a href="{{route('admin.roomtypes.index')}}" class="nav-link active ">
+            <a href="{{route('admin.roomtypes.index')}}" class="nav-link ">
                 <i class="nav-icon fas fa-bed"></i>
                 <p>
                     Room Types
@@ -140,7 +140,7 @@
                 </a>
             </li>
             <li class="nav-item ">
-            <a href="{{route('admin.bills.index')}}" class="nav-link ">
+            <a href="{{route('admin.bills.index')}}" class="nav-link active ">
               <i class="nav-icon fas fa-file-invoice-dollar"></i>
               <p>
                 Bills
@@ -163,12 +163,13 @@
 </aside>
 
 <!-- Content -->
+<!-- Content -->
 <div class="content-wrapper">
     <!-- Main content -->
     <section class="content">
     <div class="container-fluid">
         <div class="container">
-            <h1 class="mt-5">Room Types</h1>
+            <h1 class="mt-5">Bills</h1>
             <div class="mt-3">
                 @if (session('success'))
                     <div class="alert alert-success">
@@ -178,32 +179,32 @@
                 <table class="table table-bordered mt-3">
                     <thead>
                         <tr>
-                            <th>Room Type</th>
-                            <th>Room Price</th>
-                            <th>Occupancy</th>
-                            <th>Room Description</th>
+                            <th>Bill ID</th>
+                            <th>Booking ID</th>
+                            <th>Room Charge</th>
+                            <th>Payment Date</th>
+                            <th>Expire Date</th>
+                            <th>Total Price</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($roomTypes as $roomType)
+                        @foreach ($bills as $bill)
                             <tr>
-                                <td>{{ $roomType->RoomType }}</td>
-                                <td>{{ $roomType->RoomPrice }}</td>
-                                <td>{{ $roomType->Occupancy }}</td>
-                                <td>{{ $roomType->RoomDesc }}</td>
-                                <td>
-                                    @if ($roomType->Status == 1)
-                                        <button class="btn btn-danger" onclick="deactivateRoomType('{{ $roomType->RoomType }}')">Deactivate</button>
-                                    @else
-                                        <button class="btn btn-success" onclick="activateRoomType('{{ $roomType->RoomType }}')">Activate</button>
-                                    @endif
-                                </td>
+                                <td>{{ $bill->BillID }}</td>
+                                <td>{{ $bill->BookingID }}</td>
+                                <td>{{ $bill->RoomCharge }}</td>
+                                <td>{{ $bill->PaymentDate }}</td>
+                                <td>{{ $bill->ExpireDate }}</td>
+                                <td>{{ $bill->TotalPrice }}</td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
+    </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
 </div>
 
 
@@ -292,4 +293,4 @@ function activateRoomType(id) {
 
 </script>
 </body>
-</html>
+</html> 

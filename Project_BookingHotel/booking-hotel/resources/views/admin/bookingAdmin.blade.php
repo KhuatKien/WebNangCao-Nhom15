@@ -105,7 +105,7 @@
           </li>
           <li class="nav-item">
             <a href="{{route('admin.roomtypes.index')}}" class="nav-link">
-                <i class="nav-icon fas fa-table"></i>
+            <i class="nav-icon fas fa-bed"></i>
               <p>Room Types</p>
             </a>
           </li>
@@ -121,10 +121,20 @@
               <p>Bookings</p>
             </a>
           </li>
+          <li class="nav-item ">
+            <a href="{{route('admin.bills.index')}}" class="nav-link ">
+              <i class="nav-icon fas fa-file-invoice-dollar"></i>
+              <p>
+                Bills
+              </p>
+            </a>
+          </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-comments"></i>
-              <p>Comments</p>
+            <a href="{{ route('loginadmin') }}" class="nav-link ">
+             <i class="nav-icon fas fa-sign-out-alt"></i>
+              <p>
+                Sign out
+              </p>
             </a>
           </li>
         </ul>

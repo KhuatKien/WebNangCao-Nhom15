@@ -8,30 +8,35 @@
         padding: 20px 30px;
         border-radius: 10px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        width: 1200px;
-        height: 600px;
+        width: 100%; /* Điều chỉnh chiều rộng cho phù hợp */
+        max-width: 600px; /* Giới hạn chiều rộng tối đa */
+        height: 100%; /* Chiều cao cho phù hợp */
+        overflow-y: auto; /* Hiển thị thanh cuộn khi nội dung quá dài */
         margin: 0 auto;
-        overflow-y: auto;
-        margin-top: 30px;
     }
+
     .form-container h2 {
         margin-bottom: 15px;
         font-size: 22px;
         color: #333;
         text-align: center;
     }
+
     .form-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 15px;
     }
+
     .form-container label {
         display: block;
         margin-bottom: 5px;
         font-weight: bold;
         color: #555;
     }
-    .form-container input {
+
+    .form-container input,
+    .form-container select {
         width: 100%;
         padding: 10px;
         margin-bottom: 10px;
@@ -40,10 +45,12 @@
         box-sizing: border-box;
         font-size: 14px;
     }
+
     .form-container input[readonly] {
         background-color: #f5f5f5;
         color: #999;
     }
+
     .form-container button {
         width: 100%;
         padding: 12px;
@@ -55,9 +62,11 @@
         cursor: pointer;
         transition: background-image 0.3s ease;
     }
+
     .form-container button:hover {
         background-image: linear-gradient(to right, #2575fc, #6a11cb);
     }
+
     .back-to-profile {
         display: block;
         margin-top: 10px;
@@ -66,9 +75,11 @@
         text-align: center;
         font-size: 14px;
     }
+
     .back-to-profile:hover {
         text-decoration: underline;
     }
+
     .full-width {
         grid-column: span 2;
     }
@@ -94,7 +105,12 @@
                 </div>
                 <div>
                     <label for="gender">Gender:</label>
-                    <input type="text" id="gender" name="gender" value="{{ old('gender', $guest->Gender ?? '') }}" required>
+                    <select id="gender" name="gender" required>
+                        <option value="" disabled selected>Select Gender</option>
+                        <option value="male" {{ old('gender', $guest->Gender ?? '') === 'male' ? 'selected' : '' }}>Male</option>
+                        <option value="female" {{ old('gender', $guest->Gender ?? '') === 'female' ? 'selected' : '' }}>Female</option>
+                        <option value="other" {{ old('gender', $guest->Gender ?? '') === 'other' ? 'selected' : '' }}>Other</option>
+                    </select>
                 </div>
                 <div>
                     <label for="phone">Phone Number:</label>

@@ -79,7 +79,7 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item menu-open">
+          <li class="nav-item ">
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -87,7 +87,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item menu-open">
+          <li class="nav-item ">
             <a href="{{route('admin.users.index')}}" class="nav-link ">
               <i class="nav-icon fas fa-user"></i>
               <p>
@@ -95,7 +95,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item menu-open">
+          <li class="nav-item ">
             <a href="{{route('admin.tables.index')}}" class="nav-link  ">
                 <i class="nav-icon fas fa-table"></i>
               <p>
@@ -103,15 +103,15 @@
               </p>
             </a>
           </li>
-          <li class="nav-item menu-open">
+          <li class="nav-item ">
             <a href="{{route('admin.roomtypes.index')}}" class="nav-link  ">
-                <i class="nav-icon fas fa-table"></i>
+              <i class="nav-icon fas fa-bed"></i>
               <p>
                 Room Types
               </p>
             </a>
           </li>
-          <li class="nav-item menu-open">
+          <li class="nav-item ">
             <a href="{{route('admin.rooms.index')}}" class="nav-link ">
             <i class="nav-icon fas fa-book"></i>
               <p>
@@ -119,7 +119,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item menu-open">
+          <li class="nav-item ">
             <a href="{{route('admin.bookings.index')}}" class="nav-link ">
               <i class="nav-icon fas fa-bars"></i>
               <p>
@@ -127,11 +127,19 @@
               </p>
             </a>
           </li>
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link ">
-              <i class="nav-icon fas fa-comments"></i>
+          <li class="nav-item ">
+            <a href="{{route('admin.bills.index')}}" class="nav-link ">
+              <i class="nav-icon fas fa-file-invoice-dollar"></i>
               <p>
-                Comments
+                Bills
+              </p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a href="{{ route('loginadmin') }}" class="nav-link ">
+              <i class="nav-icon fas fa-sign-out-alt"></i>
+              <p>
+                Sign out
               </p>
             </a>
           </li>
@@ -171,12 +179,12 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>20</h3>
+                <h3>{{ $roomCount }}</h3>
 
-                <p>Room</p>
+                <p>Rooms</p>
               </div>
               <div class="icon">
-              <i class="nav-icon fas fa-table"></i>
+              <i class="nav-icon fas fa-bed"></i>
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -186,9 +194,9 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>10</h3>
+                <h3>{{ $bookingCount }}</h3>
 
-                <p>Room Confirm</p>
+                <p>Rooms Booking</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
@@ -199,16 +207,16 @@
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3>10</h3>
+            <div class="small-box bg-warning" >
+              <div class="inner" style="color: #fff;">
+                <h3>{{ $userCount }}</h3>
 
-                <p>User Registrations</p>
+                <p>Users Registrations</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="#" class="small-box-footer" ><span style="color: #fff;">More info</span> <i style="color: #fff;" class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -216,12 +224,12 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>65</h3>
+                <h3>{{ $tableCount }}</h3>
 
-                <p>Unique Visitors</p>
+                <p>Tables</p>
               </div>
               <div class="icon">
-                <i class="ion ion-pie-graph"></i>
+                <i class="nav-icon fas fa-table"></i>
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>

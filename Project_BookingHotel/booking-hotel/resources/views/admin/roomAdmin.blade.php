@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Users Dashboard</title>
+  <title>Rooms Dashboard</title>
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -90,7 +90,7 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item menu-open">
+          <li class="nav-item ">
             <a href="{{route('admin.dashboard')}}" class="nav-link ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -98,7 +98,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item menu-open">
+          <li class="nav-item ">
             <a href="{{route('admin.users.index')}}" class="nav-link ">
               <i class="nav-icon fas fa-user"></i>
               <p>
@@ -106,7 +106,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item menu-open">
+          <li class="nav-item ">
             <a href="{{route('admin.tables.index')}}" class="nav-link">
                 <i class="nav-icon fas fa-table"></i>
               <p>
@@ -114,37 +114,45 @@
               </p>
             </a>
           </li>
-          <li class="nav-item menu-open">
+          <li class="nav-item ">
             <a href="{{route('admin.roomtypes.index')}}" class="nav-link  ">
-                <i class="nav-icon fas fa-table"></i>
+              <i class="nav-icon fas fa-bed"></i>
               <p>
                 Room Types
               </p>
             </a>
           </li>
-          <li class="nav-item menu-open">
-            <a href="admin.rooms.index" class="nav-link active">
+          <li class="nav-item ">
+            <a href="{{route('admin.rooms.index')}}" class="nav-link active">
                 <i class="nav-icon fas fa-book"></i>
               <p>
                 Room list
               </p>
             </a>
           </li>
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link ">
+          <li class="nav-item ">
+            <a href="{{route('admin.bookings.index')}}" class="nav-link ">
               <i class="nav-icon fas fa-bars"></i>
               <p>
                 Book room
               </p>
             </a>
           </li>
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link ">
-              <i class="nav-icon fas fa-comments"></i>
+          <li class="nav-item ">
+            <a href="{{route('admin.bills.index')}}" class="nav-link ">
+              <i class="nav-icon fas fa-file-invoice-dollar"></i>
               <p>
-                Comments
+                Bills
               </p>
             </a>
+          </li>
+          <li class="nav-item ">
+              <a href="{{ route('loginadmin') }}" class="nav-link ">
+              <i class="nav-icon fas fa-sign-out-alt"></i>
+                <p>
+                  Sign out
+                </p>
+              </a>
           </li>
         </ul>
       </nav>

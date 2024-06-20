@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TblBooking;
+use App\Models\TblRoom;
+use App\Models\Tbltable;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -9,7 +13,11 @@ use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
     public function admin(){
-        return view('admin/admin');
+        $userCount = User::count() - 1;
+        $roomCount = TblRoom::count();
+        $bookingCount = TblBooking::count();
+        $tableCount = Tbltable::count();
+        return view('admin/admin', ['userCount' => $userCount,'roomCount' => $roomCount,'bookingCount' => $bookingCount,'tableCount' => $tableCount]);
     }  
     public function loginadmin(){
         return view('admin/loginadmin');
