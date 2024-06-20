@@ -6,6 +6,8 @@ use App\Models\TblBooking;
 use App\Models\TblRoom;
 use App\Models\TblBill;
 use App\Models\TblGuest;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ConfirmMail;
 use Illuminate\Http\Request;
 
 class BookingAdminController extends Controller
@@ -14,7 +16,7 @@ class BookingAdminController extends Controller
     {
         $bookings = TblBooking::all();
         // $rooms = TblRoom::all();
-        // $guests = TblGuest::all();
+        $guests = TblGuest::all();
         return view('admin.bookingAdmin', compact('bookings'));
     }
 
@@ -38,9 +40,11 @@ class BookingAdminController extends Controller
     public function confirmBooking($id)
     {
         $booking = TblBooking::findOrFail($id);
-        $booking->Status = 1; // Xác nhận
+        $booking->Status = 1;
         $booking->save();
 
+            // Gửi email thông báo cho người dùng
+        Mail::to($booking->guest->user->email)->send(new ConfirmMail($booking));
         return redirect()->route('admin.bookings.index')->with('success', 'Booking confirmed successfully.');
     }
 
@@ -64,6 +68,12 @@ class BookingAdminController extends Controller
         $bill->ExpireDate = now()->toDateString();
         $bill->TotalPrice = $totalPrice;
         $bill->save();
+
+        // Cập nhật trạng thái của phòng trong bảng tblroom về 0 (trống)
+        $room = $booking->room;
+        $room->Status = 1;
+        $room->save();
+
 
         return redirect()->route('admin.bookings.index')->with('success', 'Bill created successfully.');
     }

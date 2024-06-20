@@ -77,8 +77,9 @@ Route::middleware(['auth', CheckAdmin::class])->group(function () {
 
     // Booking Admin
     Route::get('/admin/bookings', [BookingAdminController::class, 'index'])->name('admin.bookings.index');
-    Route::put('/admin/bookings/{id}/confirm', [BookingAdminController::class, 'confirmBooking'])->name('admin.bookings.confirm');
+    Route::post('/admin/bookings/{id}/confirm', [BookingAdminController::class, 'confirmBooking'])->name('admin.bookings.confirm');
     Route::post('/admin/bookings/{id}/bill', [BookingAdminController::class, 'createBill'])->name('admin.bookings.bill');
+    // Route::post('/admin/confirm', [BookingAdminController::class, 'confirmBooking'])->name('admin.bookings.confirm');
 });
 
 //Restaurant
