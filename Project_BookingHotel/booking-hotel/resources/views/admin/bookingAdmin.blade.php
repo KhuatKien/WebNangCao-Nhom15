@@ -177,16 +177,14 @@
                             <td>{{ $booking->NumChildren }}</td>
                             <td>{{ $booking->Status }}</td>
                             <td>
-                                <form action="{{ route('admin.bookings.confirm', ['id' => $booking->BookingID]) }}" method="POST" style="display:inline-block;">
-                                    @csrf
-                                    @method('PUT')
-                                    <button type="submit" class="btn btn-sm btn-success">Confirm</button>
-                                </form>
-                                <form action="{{ route('admin.bookings.bill', ['id' => $booking->BookingID]) }}" method="POST" style="display:inline-block;">
-                                    @csrf
-                                    @method('POST')
-                                    <button type="submit" class="btn btn-sm btn-primary">Pay</button>
-                                </form>
+                              <form action="{{ route('admin.bookings.confirm', ['id' => $booking->BookingID]) }}" method="POST" style="display:inline-block;">
+                                @csrf
+                                <button type="submit" class="btn btn-sm btn-success">Confirm</button>
+                            </form>
+                            <form action="{{ route('admin.bookings.bill', ['id' => $booking->BookingID]) }}" method="POST" style="display:inline-block;">
+                                @csrf
+                                <button type="submit" class="btn btn-sm btn-primary">Pay</button>
+                            </form>
                             </td>
                         </tr>
                         @endforeach
