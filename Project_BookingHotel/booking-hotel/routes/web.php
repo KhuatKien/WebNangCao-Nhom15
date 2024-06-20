@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\BillAdminController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\URL;
 
@@ -79,6 +80,9 @@ Route::middleware(['auth', CheckAdmin::class])->group(function () {
     Route::get('/admin/bookings', [BookingAdminController::class, 'index'])->name('admin.bookings.index');
     Route::put('/admin/bookings/{id}/confirm', [BookingAdminController::class, 'confirmBooking'])->name('admin.bookings.confirm');
     Route::post('/admin/bookings/{id}/bill', [BookingAdminController::class, 'createBill'])->name('admin.bookings.bill');
+
+    //Bill Admin
+    Route::get('/admin/bills', [BillAdminController::class, 'index'])->name('admin.bills.index');
 });
 
 //Restaurant
