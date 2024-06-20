@@ -777,7 +777,7 @@ body{
     font-size: 27px;
     font-weight: normal;
     line-height: 33.75px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 }
 
 .form-group {

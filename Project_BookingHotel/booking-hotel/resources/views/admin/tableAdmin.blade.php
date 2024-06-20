@@ -115,6 +115,14 @@
             </a>
           </li>
           <li class="nav-item menu-open">
+            <a href="{{route('admin.roomtypes.index')}}" class="nav-link  ">
+                <i class="nav-icon fas fa-table"></i>
+              <p>
+                Room Types
+              </p>
+            </a>
+          </li>
+          <li class="nav-item menu-open">
             <a href="#" class="nav-link ">
                 <i class="nav-icon fas fa-book"></i>
               <p>
