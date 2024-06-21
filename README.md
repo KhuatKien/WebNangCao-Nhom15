@@ -31,3 +31,18 @@ nhà hàng, phòng họp, đám cưới, massage...
   - Hệ thống đóng gói: Hỗ trợ quản lý và đóng gói mã nguồn dễ dàng qua Composer.
   
   => Laravel giúp đơn giản hóa và tối ưu hóa quá trình phát triển web.
+# Google Cloud Console (SSO - Single Sign-On)
+  -
+# SMTP:
+  - MAIL_MAILER=smtp
+  - MAIL_HOST=smtp.gmail.com
+  - MAIL_PORT=587
+  - MAIL_USERNAME="kien18122k3@gmail.com"
+  - MAIL_PASSWORD="fckc zbnz pixm mhdm"
+  - MAIL_ENCRYPTION=tls
+  - MAIL_FROM_ADDRESS="kien18122k3@gmail.com"
+  - MAIL_FROM_NAME="The Cappa Hotel"
+# Tài khoản Admin
+  - Email: admin@gmail.com
+  - Mật khẩu: 123456789
+# Link Web deploy (Heroku): https://thecappahotel-ff70e6604f55.herokuapp.com/
