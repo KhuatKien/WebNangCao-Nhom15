@@ -31,12 +31,3 @@ nhà hàng, phòng họp, đám cưới, massage...
   - Hệ thống đóng gói: Hỗ trợ quản lý và đóng gói mã nguồn dễ dàng qua Composer.
   
   => Laravel giúp đơn giản hóa và tối ưu hóa quá trình phát triển web.
-* Các bước cài đặt:
-  - Bước 1: Cài đặt Composer, XAMPP và PHP
-  - Bước 2: Sau khi bạn đã cài đặt PHP và Composer, bạn có thể tạo một dự án Laravel mới thông qua lệnh của Composer (create-project):
-    ![image](https://github.com/KhuatKien/WebNangCao-Nhom15/assets/91423106/20fb211a-8ec1-44ee-98d7-6832ef752494)
-    Hoặc, bạn có thể tạo các dự án Laravel mới bằng cách cài đặt toàn cầu trình cài đặt Laravel thông qua Composer:
-    ![image](https://github.com/KhuatKien/WebNangCao-Nhom15/assets/91423106/c0e23220-d5d7-4b5b-abe0-66f16ddd9405)
-  - Bước 3: Khi project đã được tạo, khởi động local development server của Laravel bằng lệnh của Laravel Artisan:
-    ![image](https://github.com/KhuatKien/WebNangCao-Nhom15/assets/91423106/64b93d21-f12d-4ead-9475-0da72a3d5144)
-  - Bước 4: Vào file php.ini trong XAMPP bỏ dấu “;” trước dòng lệnh “extension=zip”
