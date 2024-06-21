@@ -74,4 +74,6 @@ nhà hàng, phòng họp, đám cưới, massage...
   - Email: admin@gmail.com
   - Mật khẩu: 123456789
 
+# Link Github Deploy: https://github.com/KhuatKien/Web_nang_cao_Nhom_15-Deploy
+
 # Link Web deploy (Heroku): https://thecappahotel-ff70e6604f55.herokuapp.com/
